@@ -4,180 +4,193 @@
 <head>
     <meta charset="utf-8" />
     <title> RichardSom +dbs </title>
-    <%- include("partials/head.html")  %>
+    <%- include("partials/head.html") %>
 </head>
 
 <body>
 
-    <%- include("partials/navigation.html")  %>
-    
-    <div class="container">
-        <header class="row">
-            <div class="col-lg-12 text-center">
+    <%- include("partials/navigation.html") %>
+
+       
+            <!-- <header class="row align-items-center">
+                <div class="col-lg-12 text-center" >
+                    <img src="/images/logoasd2.png" class="img-fluid animate__bounceIn" alt="">
+                </div>
+            </header> -->
+            <div class="topo">
                 <img src="/images/logoasd2.png" class="img-fluid animate__bounceIn" alt="">
             </div>
-        </header>
-    </div>
+        
 
-    <div class="contenedor">
-        <div class="slider-section">
-            <div class="slide-contenedor">
-                <div class="miSlider fade">
-                    <img src="images/S01.png" alt="" />
+        <ul class="nav justify-content-center bg-dark p-3">
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5" aria-current="page" href="#">Calendario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5" href="#">Noticias</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5" href="#">Fotos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5">Empresa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5">Eventos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5" aria-current="page" href="#">Descargas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-5" aria-current="page" href="#">Contacto</a>
+        </ul>
+        <div class="contenedor">
+            <div class="slider-section">
+                <div class="slide-contenedor">
+                    <div class="miSlider fade">
+                        <img src="images/S01.png" alt="" />
+                    </div>
+                    <div class="miSlider fade">
+                        <img src="images/S02.png" alt="" />
+                    </div>
+                    <div class="miSlider fade">
+                        <img src="images/S03.png" alt="" />
+                    </div>
+                    <div class="miSlider fade">
+                        <img src="images/S04.png" alt="" />
+                    </div>
+                    <div class="direccion">
+                        <a href="#" class="atras" onclick="avanzaSlide(-1)"> &#10094; </a>
+                        <a href="#" class="adelante" onclick="avanzaSlide(1)"> &#10095; </a>
+                    </div>
+                    <div class="barras">
+                        <span class="barra active" onclick="posicionSlide(1)"></span>
+                        <span class="barra" onclick="posicionSlide(2)"></span>
+                        <span class="barra" onclick="posicionSlide(3)"></span>
+                        <span class="barra" onclick="posicionSlide(4)"></span>
+                    </div>
                 </div>
-                <div class="miSlider fade">
-                    <img src="images/S02.png" alt="" />
-                </div>
-                <div class="miSlider fade">
-                    <img src="images/S03.png" alt="" />
-                </div>
-                <div class="miSlider fade">
-                    <img src="images/S04.png" alt="" />
-                </div>
-                <div class="direccion">
-                    <a href="#" class="atras" onclick="avanzaSlide(-1)"> &#10094; </a>
-                    <a href="#" class="adelante" onclick="avanzaSlide(1)"> &#10095; </a>
-                </div>
-                <div class="barras">
-                    <span class="barra active" onclick="posicionSlide(1)"></span>
-                    <span class="barra" onclick="posicionSlide(2)"></span>
-                    <span class="barra" onclick="posicionSlide(3)"></span>
-                    <span class="barra" onclick="posicionSlide(4)"></span>
-                </div>
+                <script src="js/sliderApp.js"></script>
             </div>
-            <script src="js/sliderApp.js"></script>
+            <section class="seccion">
+                <article class="articulo">
+                    <a href="#">
+                        <div class="holu">
+                            <div class="imagen-ventana" id="vi-izquierda">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">¿Quienes somos?</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana">"Somos una empresa dedicada a <br /> dar soluciones en
+                                        ambitos
+                                        <br /> informaticos y tecnologicos"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-center">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Contacto</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Marcelo Ibarrola
+                                        <br /> +54 9 376 4210440
+                                        <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-derecha">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Servicios</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
+                                        Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-derecha">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Servicios</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
+                                        Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-derecha">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Servicios</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
+                                        Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-derecha">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Servicios</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
+                                        Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                <article class="articulo">
+                    <a href="#">
+                        <div>
+                            <div class="imagen-ventana" id="vi-derecha">
+                                <div class="ventana1">
+                                    <p class="texto-ventana2">Servicios</p>
+                                </div>
+                                <div class="ventana">
+                                    <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
+                                        Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </section>
         </div>
-        <section class="seccion">
-            <article class="articulo">
-                <a href="#">
-                    <div class="holu">
-                        <div class="imagen-ventana" id="vi-izquierda">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">¿Quienes somos?</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana">"Somos una empresa dedicada a <br /> dar soluciones en ambitos
-                                    <br /> informaticos y tecnologicos"
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-center">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Contacto</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Marcelo Ibarrola
-                                    <br /> +54 9 376 4210440
-                                    <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-derecha">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Servicios</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
-                                    Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-derecha">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Servicios</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
-                                    Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-derecha">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Servicios</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
-                                    Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-derecha">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Servicios</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
-                                    Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            <article class="articulo">
-                <a href="#">
-                    <div>
-                        <div class="imagen-ventana" id="vi-derecha">
-                            <div class="ventana1">
-                                <p class="texto-ventana2">Servicios</p>
-                            </div>
-                            <div class="ventana">
-                                <p class="texto-ventana"> Nos dedicamos a: <br /> - Instalacion de camaras <br /> -
-                                    Reparacion de PC's y Notebook's <br /> - Servicio tecnico <br />
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </article>
-        </section>
-    </div>
-    <div class="redes">
-        <div class="iconos-redes">
-            <a href="https://www.facebook.com/RichardSomArgentina/" target="_blank">
-                <img class="icon" src="images/iconf.png" />
-            </a>
-            <a href="" target="_blank">
-                <img class="icon" src="images/iconi.png" />
-            </a>
-            <a href="" target="_blank">
-                <img class="icon" src="images/iconwp.png" />
-            </a>
-        </div>
-    </div>
-    <%- include("partials/about.html")  %>
-    <%- include("partials/footer.html")  %>
+        <%- include("partials/about.html") %>
+            <%- include("partials/footer.html") %>
 </body>
 
 </html>

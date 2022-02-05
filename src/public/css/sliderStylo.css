@@ -5,8 +5,8 @@
     height: auto;
     position: relative;
     /*overflow: hidden;*/
-    -webkit-box-shadow: 6px 4px 5px 0px rgba(163,188,230,1);/* rgba(0,0,0,0.75);*/
-    -moz-box-shadow: 6px 4px 5px 0px rgba(163,188,230,1);  
+    /* -webkit-box-shadow: 6px 4px 5px 0px rgba(163,188,230,1); rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 4px 5px 0px rgba(163,188,230,1);*/
 }
 
 .miSlider{
