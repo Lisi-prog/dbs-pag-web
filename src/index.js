@@ -1,6 +1,12 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
+
+//Conection to server
+mongoose.connect("mongodb+srv://admin:admin@cluster0.eflub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    .then(db => console.log("DB connected"))
+    .catch(err => console.log(err));
 
 //Settings
 app.set("port", process.env.PORT || 3000);

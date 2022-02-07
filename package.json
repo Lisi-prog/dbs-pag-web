@@ -11,9 +11,14 @@
   "author": "Lisi",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "morgan": "^1.10.0"
+    "mongoose": "^6.2.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
