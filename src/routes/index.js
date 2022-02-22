@@ -13,4 +13,9 @@ router.get("/login", (req, res) => {
     res.render("login.html", {tittle: 'Inicio de sesion'});
 });
 
+router.post("/login", (req, res, next) => {
+    console.log(req.body);
+    res.send("Recibido");
+});
+
 module.exports = router;

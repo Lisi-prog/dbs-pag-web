@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
+const morgan = require("morgan");
 
 //Conection to server
 mongoose.connect("mongodb+srv://admin:admin@cluster0.eflub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -15,7 +16,8 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
 
 //middlewares
-
+app.use(morgan("dev"));
+app.use(express.urlencoded({extended: false}));
 
 //Routes
 app.use(require("./routes/index"));
