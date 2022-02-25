@@ -24,6 +24,10 @@
                                     <% if (signupMessage){ %>
                                         <div><%= signupMessage %></div>
                                     <% } %>
+
+                                    <% if (signinMessage){ %>
+                                        <div><%= signinMessage %></div>
+                                    <% } %>
                                     <!-- Sign In Form -->
                                     <form action="/login" method="POST">
                                         <div class="form-floating mb-3">

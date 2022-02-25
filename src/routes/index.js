@@ -10,11 +10,21 @@ router.get("/contact", (req, res) => {
     res.render("contact.html", {tittle: 'Contacto'});
 });
 
+router.get("/register", (req, res) => {
+    res.render("login.html", {tittle: 'Inicio de sesion'});
+});
+
+router.post("/register", passport.authenticate("local-signup", {
+    successRedirect: "/perfil",
+    failureRedirect: "/login",
+    passReqToCallback: true
+}));
+
 router.get("/login", (req, res) => {
     res.render("login.html", {tittle: 'Inicio de sesion'});
 });
 
-router.post("/login", passport.authenticate("local-signup", {
+router.post("/login", passport.authenticate("local-signin", {
     successRedirect: "/perfil",
     failureRedirect: "/login",
     passReqToCallback: true
