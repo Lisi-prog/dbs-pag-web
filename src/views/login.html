@@ -21,13 +21,7 @@
                                 <div class="col-md-9 col-lg-8 mx-auto">
                                     <h3 class="login-heading mb-4 text-white fs-1">¡Bienvenido!</h3>
 
-                                    <% if (signupMessage){ %>
-                                        <div><%= signupMessage %></div>
-                                    <% } %>
-
-                                    <% if (signinMessage){ %>
-                                        <div><%= signinMessage %></div>
-                                    <% } %>
+                                    <%- include("partials/message.html") %> 
                                     <!-- Sign In Form -->
                                     <form action="/login" method="POST">
                                         <div class="form-floating mb-3">

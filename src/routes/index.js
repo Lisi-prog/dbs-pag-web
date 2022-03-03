@@ -1,4 +1,7 @@
 const express = require("express");
+const req = require("express/lib/request");
+const res = require("express/lib/response");
+const { redirect } = require("express/lib/response");
 const router = express.Router();
 const passport = require("passport");
 
@@ -25,13 +28,30 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local-signin", {
-    successRedirect: "/perfil",
+    successRedirect: "/",
     failureRedirect: "/login",
     passReqToCallback: true
 }));
 
-router.get("/perfil", (req, res) => {
+router.get("/logout", (req, res, next) => {
+    req.logOut();
+    res.redirect("/");
+});
+
+// router.use((req, res, next) => {
+//     isAuthenticated(req, res, next);
+//     next();
+// });
+
+router.get("/perfil", isAuthenticated, (req, res) => {
     res.render("perfil.html", {tittle: "Mi perfil"});
 });
+
+function isAuthenticated(req, res ,next) {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/");
+};
 
 module.exports = router;
