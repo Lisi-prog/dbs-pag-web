@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !== "production"){
+    require("dotenv").config();
+}
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -6,9 +9,10 @@ const morgan = require("morgan");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("connect-flash");
+const multer = require("multer");
 
 //Conection to server
-mongoose.connect("mongodb+srv://admin:admin@cluster0.eflub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoose.connect(process.env.mongodb_uri)
     .then(db => console.log("DB connected"))
     .catch(err => console.log(err));
 
@@ -23,7 +27,18 @@ app.set("view engine", "ejs");
 
 //middlewares
 app.use(morgan("dev"));
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, "public/uploads"),
+    filename: (req, file, cb) => {
+        cb(null, new Date().getTime() + path.extname(file.originalname));
+    }
+});
+
+app.use(multer({storage: storage}).single("image"));
+
 app.use(session({
     secret: "mysecret",
     resave: false,

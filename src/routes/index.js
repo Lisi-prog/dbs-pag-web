@@ -35,6 +35,10 @@ router.get("/visor", (req, res) => {
     res.render("visorAlbum.html", {tittle: 'Album'});
 });
 
+router.get("/addPhoto", (req, res) => {
+    res.render("addPhoto.html", {tittle: 'Album'});
+});
+
 router.post("/login", passport.authenticate("local-signin", {
     successRedirect: "/",
     failureRedirect: "/login",

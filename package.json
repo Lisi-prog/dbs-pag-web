@@ -4,20 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src"
+    "start": "cross-env NODE_ENV=production node src/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon src"
   },
   "keywords": [],
   "author": "Lisi",
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
+    "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "express-handlebars": "^6.0.3",
     "express-session": "^1.17.2",
     "mongoose": "^6.2.0",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0"
   },

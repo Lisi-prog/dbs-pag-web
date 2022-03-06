@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include("partials/head.html") %>
+</head>
+<body>
+    <%- include("partials/navigation.html") %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control" placeholder="Titulo del Album">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="description" class="form-control" placeholder="Descripcion"></textarea>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
+                                    <!-- <label for="inputGroupFile01" class="custom-file-label">Choose file</label> -->
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Subir album</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/about.html") %>
+    <%- include("partials/footer.html") %>
+</body>
+</html>
