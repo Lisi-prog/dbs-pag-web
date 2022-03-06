@@ -8,4 +8,4 @@ const photoSchema = new Schema({
     public_id: String
 });
 
-module.exports = model("photo", photo);
+module.exports = model("photo", photoSchema);

@@ -4,6 +4,14 @@ const res = require("express/lib/response");
 const { redirect } = require("express/lib/response");
 const router = express.Router();
 const passport = require("passport");
+const Photo = require("../models/photo");
+const cloudinary = require("cloudinary");
+
+cloudinary.config({
+    cloud_name: process.env.cloud_name,
+    api_key: process.env.api_key,
+    api_secret: process.env.api_secret
+});
 
 router.get("/", (req, res) => {
     res.render("index.html", {tittle: 'RichardSom +dbs'});
@@ -37,6 +45,19 @@ router.get("/visor", (req, res) => {
 
 router.get("/addPhoto", (req, res) => {
     res.render("addPhoto.html", {tittle: 'Album'});
+});
+
+router.post("/images/add", async (req, res) => {
+    const {title, description} = req.body;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
+    const newPhoto = new Photo({
+    title: title,
+    description: description,
+    imageURL: result.url, 
+    public_id: result.public_id
+    })
+    await newPhoto.save();
+    res.send("Recibido");
 });
 
 router.post("/login", passport.authenticate("local-signin", {
