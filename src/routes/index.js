@@ -27,6 +27,14 @@ router.get("/login", (req, res) => {
     res.render("login.html", {tittle: 'Inicio de sesion'});
 });
 
+router.get("/album", (req, res) => {
+    res.render("album.html", {tittle: 'Album'});
+});
+
+router.get("/visor", (req, res) => {
+    res.render("visorAlbum.html", {tittle: 'Album'});
+});
+
 router.post("/login", passport.authenticate("local-signin", {
     successRedirect: "/",
     failureRedirect: "/login",

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title> RichardSom +dbs </title>
+  <%- include("partials/head.html") %>
+</head>
+
+<body>
+
+  <%- include("partials/navigation.html") %>
+
+    <div class="container">
+
+      <% if (user) { %>
+        <button type="button" class="btn btn-info ms-4 mt-4 ">Nuevo Album</button>
+      <% } %>
+      
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+        <%- include("partials/cardAlbum.html") %>
+      </div>
+
+    </div>
+
+    <%- include("partials/about.html") %>
+    <%- include("partials/footer.html") %>
+</body>
+</html>

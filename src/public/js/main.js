@@ -1,21 +1,23 @@
-/*var imagenes = [];
-var i = 0;
-imagenes [0] = "images/S01.jpeg";
-imagenes [1] = "images/S02.jpeg"; 
-imagenes [2] = "images/S03.jpeg"; 
-imagenes [3] = "images/S04.jpeg";  
-
-window.addEventListener ( 'load', function() {
-    console.log("se cargo");
-    setInterval(cambiarImagenes, 3000);
-});
-
-function cambiarImagenes(){
-    document.jui.src = imagenes[i];
-    if(i < 3){
-        i++;
-    }
-    else{
-        i = 0;
-    }
-}*/
+  // $('.portfolio-item').isotope({
+        //  	itemSelector: '.item',
+        //  	layoutMode: 'fitRows'
+        //  });
+        $('.portfolio-menu ul li').click(function(){
+        $('.portfolio-menu ul li').removeClass('active');
+        $(this).addClass('active');
+            
+        var selector = $(this).attr('data-filter');
+        $('.portfolio-item').isotope({
+                 filter:selector
+        });
+         return  false;
+        });
+        $(document).ready(function() {
+        var popup_btn = $('.popup-btn');
+        popup_btn.magnificPopup({
+        type : 'image',
+        gallery : {
+            enabled : true
+        }
+        });
+        });

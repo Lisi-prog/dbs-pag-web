@@ -6,7 +6,7 @@
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 body {
@@ -35,6 +35,10 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+footer a {
+    color: white;
 }
 
 .topo {
@@ -70,4 +74,29 @@ footer {
     font-size: 0.9rem;
     letter-spacing: 0.05rem;
     padding: 0.75rem 1rem;
+}
+
+.portfolio-menu{
+	text-align:center;
+}
+.portfolio-menu ul li{
+	display:inline-block;
+	margin:0;
+	list-style:none;
+	padding:10px 15px;
+	cursor:pointer;
+	-webkit-transition:all 05s ease;
+	-moz-transition:all 05s ease;
+	-ms-transition:all 05s ease;
+	-o-transition:all 05s ease;
+	transition:all .5s ease;
+}
+
+.portfolio-item{
+	/*width:100%;*/
+}
+.portfolio-item .item{
+	/*width:303px;*/
+	float:left;
+	margin-bottom:10px;
 }
