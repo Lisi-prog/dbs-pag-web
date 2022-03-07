@@ -100,3 +100,7 @@ footer a {
 	float:left;
 	margin-bottom:10px;
 }
+.hola a{
+    width: inherit;
+    height: inherit;
+}
