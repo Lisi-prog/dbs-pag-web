@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
     }
 });
 
-app.use(multer({storage: storage}).single("image"));
+app.use(multer({storage: storage}).array("image"));
 
 app.use(session({
     secret: "mysecret",

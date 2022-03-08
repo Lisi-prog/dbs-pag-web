@@ -6,6 +6,7 @@ const router = express.Router();
 const passport = require("passport");
 const Photo = require("../models/photo");
 const cloudinary = require("cloudinary");
+const mongoose = require("mongoose");
 
 
 cloudinary.config({
@@ -53,20 +54,36 @@ router.get("/addPhoto", async (req, res) => {
 
 router.post("/images/add", async (req, res) => {
     const {title, description} = req.body;
-    const result = await cloudinary.v2.uploader.upload(req.file.path);
-    const newPhoto = new Photo({
-    title: title,
-    description: description,
-    imageURL: result.url, 
-    public_id: result.public_id
-    })
-    await newPhoto.save();
-    await fs.unlink(req.file.path);
+    console.log(req.files);
+    console.log(req.body);
+    for (var i = 0; i < req.files.length; i++) {
+        var locaFilePath = req.files[i].path;
+        const result = await cloudinary.v2.uploader.upload(locaFilePath);
+        const newPhoto = new Photo({
+        title: title,
+        description: description,
+        imageURL: result.url, 
+        public_id: result.public_id
+        })
+        await newPhoto.save();
+        await fs.unlink(req.files.path);
+    }
+    // const result = await cloudinary.v2.uploader.upload(req.file.path);
+    // const newPhoto = new Photo({
+    // title: title,
+    // description: description,
+    // imageURL: result.url, 
+    // public_id: result.public_id
+    // })
+    // await newPhoto.save();
+    // await fs.unlink(req.files.path);
     res.send("Recibido");
 });
 
-router.get("/images/delete/:photo_id", async (req, res) => {
+router.get("/images/delete/:photo_id", async (req, res) => {  
+    //const photo = mongoose.Types.ObjectId(req.params.photo_id);
     const {photo_id} = req.params;
+    console.log(photo_id);
     const photo = await Photo.findByIdAndDelete(photo_id);
     const result = await cloudinary.v2.uploader.destroy(photo.public_id);
     console.log(result);
