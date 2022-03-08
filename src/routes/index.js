@@ -7,14 +7,17 @@ const passport = require("passport");
 const Photo = require("../models/photo");
 const cloudinary = require("cloudinary");
 
+
 cloudinary.config({
     cloud_name: process.env.cloud_name,
     api_key: process.env.api_key,
     api_secret: process.env.api_secret
 });
+const fs = require("fs-extra");
 
-router.get("/", (req, res) => {
-    res.render("index.html", {tittle: 'RichardSom +dbs'});
+router.get("/", async (req, res) => {
+    const photos = await Photo.find();
+    res.render("index.html", {photos});
 });
 
 router.get("/contact", (req, res) => {
@@ -43,8 +46,9 @@ router.get("/visor", (req, res) => {
     res.render("visorAlbum.html", {tittle: 'Album'});
 });
 
-router.get("/addPhoto", (req, res) => {
-    res.render("addPhoto.html", {tittle: 'Album'});
+router.get("/addPhoto", async (req, res) => {
+    const photos = await Photo.find();
+    res.render("addPhoto.html", {photos});
 });
 
 router.post("/images/add", async (req, res) => {
@@ -57,7 +61,16 @@ router.post("/images/add", async (req, res) => {
     public_id: result.public_id
     })
     await newPhoto.save();
+    await fs.unlink(req.file.path);
     res.send("Recibido");
+});
+
+router.get("/images/delete/:photo_id", async (req, res) => {
+    const {photo_id} = req.params;
+    const photo = await Photo.findByIdAndDelete(photo_id);
+    const result = await cloudinary.v2.uploader.destroy(photo.public_id);
+    console.log(result);
+    res.redirect("/");
 });
 
 router.post("/login", passport.authenticate("local-signin", {

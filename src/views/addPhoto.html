@@ -32,6 +32,29 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-8">
+                <table class="table text-white">
+                    <thead>
+                        <th> Titulo </th>
+                        <th> Descripcion </th>
+                        <th> Operaciones </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% photos.forEach(function(photos){ %>
+                                <tr>
+                                    <td><%- photos.title %></td>
+                                    <td><%- photos.description %></td>
+                                    <td>
+                                        <a href="<%- photos.imageURL %>" target= "_blank" class="btn btn-primary">Ver</a>
+                                        <a href="/images/delete/ <%= photos._id %>" class="btn btn-danger">Borrar</a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
