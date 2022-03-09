@@ -5,6 +5,7 @@ const { redirect } = require("express/lib/response");
 const router = express.Router();
 const passport = require("passport");
 const Photo = require("../models/photo");
+const Album = require("../models/album");
 const cloudinary = require("cloudinary");
 const mongoose = require("mongoose");
 
@@ -18,7 +19,8 @@ const fs = require("fs-extra");
 
 router.get("/", async (req, res) => {
     const photos = await Photo.find();
-    res.render("index.html", {photos});
+    const albums = await Album.find();
+    res.render("index.html", {photos, albums});
 });
 
 router.get("/contact", (req, res) => {
@@ -56,27 +58,23 @@ router.post("/images/add", async (req, res) => {
     const {title, description} = req.body;
     console.log(req.files);
     console.log(req.body);
+    const newAlbum = new Album({
+        title: title,
+        description: description,   
+    });
+    const album = await newAlbum.save();
     for (var i = 0; i < req.files.length; i++) {
+        console.log(title, description);
         var locaFilePath = req.files[i].path;
         const result = await cloudinary.v2.uploader.upload(locaFilePath);
         const newPhoto = new Photo({
-        title: title,
-        description: description,
         imageURL: result.url, 
-        public_id: result.public_id
+        public_id: result.public_id,
+        album: album._id
         })
         await newPhoto.save();
-        await fs.unlink(req.files.path);
+        await fs.unlink(locaFilePath);
     }
-    // const result = await cloudinary.v2.uploader.upload(req.file.path);
-    // const newPhoto = new Photo({
-    // title: title,
-    // description: description,
-    // imageURL: result.url, 
-    // public_id: result.public_id
-    // })
-    // await newPhoto.save();
-    // await fs.unlink(req.files.path);
     res.send("Recibido");
 });
 

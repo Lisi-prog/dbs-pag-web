@@ -77,6 +77,28 @@
           <a class="nav-link text-white" aria-current="page" href="#">Ultimos eventos:</a>
       </ul>
 
+      
+        <div class="card-group">
+          <% albums.forEach(function(albums){ %>
+            
+          <% foto = photos.find(element => { console.log(element._id); return element._id === albums._id}) %>
+
+          <div class="card">
+            <a href="/visor">
+              <img
+                src="<%-foto.imageURL%>"
+                class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"> <%- albums.title %> </h5>
+                <p class="card-text"> <%- albums.description %> </p>
+              </div>
+            </a>
+          </div>
+
+          <% }); %>
+        </div>
+      
+
       <div class="card-group">
         <div class="card">
           <a href="/visor">
@@ -115,6 +137,45 @@
           </a>
         </div>
       </div>
+
+      <!-- <div class="card-group">
+        <div class="card">
+          <a href="/visor">
+            <img
+              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="/visor">
+            <img
+              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+          </a>
+        </div>
+        <div class="card">
+          <a href="/visor">
+            <img
+              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
+              class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This card has even longer content than the first to show that equal height action.</p>
+            </div>
+          </a>
+        </div>
+      </div> -->
     </div>
 
 
@@ -123,7 +184,7 @@
       <div class="swiper-wrapper">
         <% photos.forEach(function(photos){ %>
           <img src="<%- photos.imageURL %>" class="swiper-slide">
-          <% }); %>
+        <% }); %>
       </div>
       <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
