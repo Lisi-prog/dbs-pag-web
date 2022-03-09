@@ -81,7 +81,7 @@
         <div class="card-group">
           <% albums.forEach(function(albums){ %>
             
-          <% foto = photos.find(element => { console.log(element._id); return element._id === albums._id}) %>
+          <% foto = photos.find(element => { console.log(element.album); return element.album.equals(albums._id);}) %>
 
           <div class="card">
             <a href="/visor">
