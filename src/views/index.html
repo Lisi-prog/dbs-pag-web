@@ -2,18 +2,11 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf-8" />
-  <title> +dbs </title>
   <%- include("partials/head.html") %>
 </head>
 
 <body>
-
   <%- include("partials/navigation.html") %>
-
-    <!-- <div class="topo">
-                <img src="/images/logoasd2.png" class="img-fluid animate__bounceIn" alt="">
-            </div> -->
     <div class="img-fluid topo">
       <img src="/images/Logo.jpg" class="img-fluid" alt="">
     </div>
@@ -69,151 +62,39 @@
         </button>
       </div>
     </div>
-
+    
     <div class="container">
 
-      <ul class="nav nav-dark bg-dark p-2 fs-4">
+      <ul class="nav nav-dark bg-dark fs-4">
         <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" href="#">Ultimos eventos:</a>
+        </li>
       </ul>
 
-      
-        <div class="card-group">
+      <div class="row py-3">
+        
           <% albums.forEach(function(albums){ %>
-            
-          <% foto = photos.find(element => { console.log(element.album); return element.album.equals(albums._id);}) %>
 
-          <div class="card">
-            <a href="/visor">
-              <img
-                src="<%-foto.imageURL%>"
-                class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"> <%- albums.title %> </h5>
-                <p class="card-text"> <%- albums.description %> </p>
+            <% foto=photos.find(element=> { console.log(element.album); return element.album.equals(albums._id);}) %>
+            <div class="col">
+              <div class="card bg-dark">
+                <a style="text-decoration:none" href="/visor/<%-albums.title%>" >
+                  <img style="height: 17em;"src="<%-foto.imageURL%>" class="card-img-top img-fluid" alt="...">
+                  <div class="card-body text-white">
+                    <h5 class="card-title">
+                      <%- albums.title %>
+                    </h5>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>
-
+            </div>
           <% }); %>
-        </div>
-      
-
-      <div class="card-group">
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-          </a>
-        </div>
+        
       </div>
-
-      <!-- <div class="card-group">
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </a>
-        </div>
-        <div class="card">
-          <a href="/visor">
-            <img
-              src="https://images.unsplash.com/photo-1423589989400-cc0270157ed0?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=a95937ce1dc3243f52c30f86d948b771"
-              class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-          </a>
-        </div>
-      </div> -->
     </div>
-
-
-    <!-- Slider main container -->
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <% photos.forEach(function(photos){ %>
-          <img src="<%- photos.imageURL %>" class="swiper-slide">
-        <% }); %>
-      </div>
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
-    </div>>
-
-    <script type="module">
-      // import Swiper from 'swiper/swiper-bundle.esm.js';
-      // import 'swiper/swiper-bundle.css';
-      var swiper = new Swiper('.swiper', {
-        effect: 'coverflow',
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        },
-        pagination: {
-          el: '.swiper-pagination',
-        },
-      });
-    </script>
-    
     <%- include("partials/about.html") %>
-      <%- include("partials/footer.html") %>
-
+    <%- include("partials/footer.html") %>
+    <%- include("partials/script.html") %>
 </body>
 
 </html>

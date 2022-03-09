@@ -45,8 +45,14 @@ router.get("/album", (req, res) => {
     res.render("album.html", {tittle: 'Album'});
 });
 
-router.get("/visor", (req, res) => {
-    res.render("visorAlbum.html", {tittle: 'Album'});
+router.get("/visor/:title", async (req, res) => {
+    const {title} = req.params;
+    console.log(title);
+    const albums = await Album.find({title: title}); 
+    const photos = await Photo.find({album: albums});
+    console.log(photos);
+    res.render("visorAlbum.html", {albums, photos, title});
+    //res.render("visorAlbum.html");
 });
 
 router.get("/addPhoto", async (req, res) => {
