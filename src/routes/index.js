@@ -24,7 +24,23 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/contact", (req, res) => {
-    res.render("contact.html", {tittle: 'Contacto'});
+    res.render("contact.html");
+});
+
+router.get("/news", (req, res) => {
+    res.render("news.html");
+});
+
+router.get("/events", (req, res) => {
+    res.render("events.html");
+});
+
+router.get("/downloads", (req, res) => {
+    res.render("downloads.html");
+});
+
+router.get("/winners", (req, res) => {
+    res.render("winners.html");
 });
 
 router.get("/register", (req, res) => {
