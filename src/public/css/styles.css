@@ -127,7 +127,7 @@ footer a {
 
 
 .nav li a:hover {
-    border-color: #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
 .collapse ul li a {
@@ -136,4 +136,8 @@ footer a {
 
 .collapse ul li a:hover {
     border-bottom: 2px solid #ffffff;
+} 
+
+.dropdown-item {
+    border:none;
 }

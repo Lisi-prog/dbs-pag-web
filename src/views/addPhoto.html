@@ -1,64 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <%- include("partials/head.html") %>
 </head>
+
 <body>
     <%- include("partials/navigation.html") %>
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="/images/add" method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input type="text" name="title" class="form-control" placeholder="Titulo del Album">
-                            </div>
-                            <div class="form-group">
-                                <textarea name="description" class="form-control" placeholder="Descripcion"></textarea>
-                            </div>
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" multiple>
-                                    <!-- <label for="inputGroupFile01" class="custom-file-label">Choose file</label> -->
-                                </div>
-                            </div>
-                            <button class="btn btn-primary">Subir album</button>
-                        </form>
+        <div class="card m-5">
+            <div class="card-body">
+                <form action="/images/add" method="POST" enctype="multipart/form-data">
+                    <div class="form-group p-4">
+                        <input type="text" name="title" class="form-control" placeholder="Titulo del Album">
                     </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <table class="table text-white">
-                    <thead>
-                        <th> Titulo </th>
-                        <th> Descripcion </th>
-                        <th> Operaciones </th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <% photos.forEach(function(photos){ %>
-                                <tr>
-                                    <td><%- photos.title %></td>
-                                    <td><%- photos.description %></td>
-                                    <td>
-                                        <a href="<%- photos.imageURL %>" target= "_blank" class="btn btn-primary">Ver</a>
-                                        <a href="/images/delete/<%- photos._id %>" class="btn btn-danger">Borrar</a>
-                                    </td>
-                                </tr>
-                            <% }); %>
-                        </tr>
-                    </tbody>
-                </table>
+                    <div class="form-group p-4">
+                        <textarea name="description" class="form-control" placeholder="Descripcion"
+                            style="height: 100px; resize: none"></textarea>
+                    </div>
+                    <div class="input-group p-4" id="add-photo-container">
+                        <div class="custom-file">
+                            <input type="file" name="image" class="custom-file-input" id="addPhoto01" multiple>
+                            <!-- <label for="inputGroupFile01" class="custom-file-label">Choose file</label> -->
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-3 mx-4 border align-items-center justify-content-center" style="height: 300px;">
+                        <div class="col-sm">
+                            <span style="font-size: 5em; color: gray;">
+                                <i class="fas fa-camera"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary m-4" id="botonn">Subir album</button>
+                </form>
             </div>
         </div>
     </div>
 
     <%- include("partials/about.html") %>
     <%- include("partials/footer.html") %>
+    <%- include("partials/script.html") %>
 </body>
+
 </html>
