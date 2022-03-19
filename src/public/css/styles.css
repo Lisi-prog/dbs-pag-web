@@ -141,3 +141,9 @@ footer a {
 .dropdown-item {
     border:none;
 }
+
+.row a:hover{
+    /* filter: brightness(120%); */
+    filter: brightness(0.4);
+    transition:all .5s ease-in-out;
+}

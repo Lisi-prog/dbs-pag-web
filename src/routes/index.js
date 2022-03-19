@@ -57,8 +57,10 @@ router.get("/login", (req, res) => {
     res.render("login.html", {tittle: 'Inicio de sesion'});
 });
 
-router.get("/album", (req, res) => {
-    res.render("album.html", {tittle: 'Album'});
+router.get("/album", async (req, res) => {
+    const photos = await Photo.find();
+    const albums = await Album.find();
+    res.render("album.html", {photos, albums});
 });
 
 router.get("/visor/:title", async (req, res) => {

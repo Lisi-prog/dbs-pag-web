@@ -12,21 +12,29 @@
     <div class="container">
 
       <% if (user) { %>
-        <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'" >Nuevo Album</button>
+        <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo Album</button>
       <% } %>
-      
-      
-      <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-        <%- include("partials/cardAlbum.html") %>
-      </div>
+
+          <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
+            <% albums.forEach(function(albums){ %>
+              <% foto=photos.find(element=> { return element.album.equals(albums._id);}) %>
+                <a href="/visor/<%-albums.title%>" style="text-decoration:none">
+                  <div class="col">
+                    <div class="card bg-dark text-white">
+                      <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%- albums.title %>
+                        </h5>
+                        <p class="card-text">
+                          <%- albums.description %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+            <% }); %>
+          </div>
 
     </div>
 
@@ -34,4 +42,5 @@
     <%- include("partials/footer.html") %>
     <%- include("partials/script.html") %>
 </body>
+
 </html>
