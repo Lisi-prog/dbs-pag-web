@@ -20,7 +20,7 @@ mongoose.connect(process.env.mongodb_uri)
 require("./passport/local-auth");
 
 //Settings
-app.set("port", process.env.PORT);
+app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "ejs");
