@@ -17,23 +17,24 @@ function createPreview(file){
 
 const myInput = document.getElementById('addPhoto01');
 
-myInput.addEventListener("change", (evt) => {
-    var files = evt.target.files; // FileList object
+if(myInput){
+    myInput.addEventListener("change", (evt) => {
+        var files = evt.target.files; // FileList object
 
-    const node = document.getElementById("boy");
-    const child = document.getElementById("fondo-photo");
+        const node = document.getElementById("boy");
+        const child = document.getElementById("fondo-photo");
 
-    if (child){
-        node.removeChild(child);
-    }else{
-        node.innerHTML = "";     
-    }
+        if (child){
+            node.removeChild(child);
+        }else{
+            node.innerHTML = "";     
+        }
 
-    var element;
-    for(var i = 0; i < files.length; i++){
-        element = files[i];
-        createPreview(element);
-    }
-});
-
+        var element;
+        for(var i = 0; i < files.length; i++){
+            element = files[i];
+            createPreview(element);
+        }
+    });
+}
 

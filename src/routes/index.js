@@ -17,14 +17,10 @@ cloudinary.config({
 });
 const fs = require("fs-extra");
 
-// router.get("/", async (req, res) => {
-//     const photos = await Photo.find();
-//     const albums = await Album.find();
-//     res.render("index.html", {photos, albums});
-// });
-
-router.get("/", () => {
-    res.render("index.html");
+router.get("/", async (req, res) => {
+    const photos = await Photo.find();
+    const albums = await Album.find();
+ res.render("index.html", {photos, albums});
 });
 
 router.get("/contact", (req, res) => {
