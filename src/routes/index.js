@@ -23,7 +23,7 @@ const fs = require("fs-extra");
 //     res.render("index.html", {photos, albums});
 // });
 
-router.get("/", (req, res) => {
+router.get("/", () => {
     res.render("index.html");
 });
 
