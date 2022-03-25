@@ -4,52 +4,53 @@
     <%- include("partials/head.html") %>
 </head>
 <body>
-    <section id="pagina" class="internas">
-        <div class="container">
+    <%- include("partials/navigation.html") %>
+
+    <div class="container">
+        <div class="winners py-4" style="min-height: 600px">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-9">
-                                    <iframe id="iframe1" style="display: block; width: 100%; height:150vh;" src="https://resultados.mtmworld.org/index.php?url=resultados" width="100%" height="150vh" scrolling="yes" seamless="seamless"></iframe>
+                <div class="col-9 bg-dark" style="min-height: 100px">
+                    <div class="row">
+                        <div class="col-12 border-bottom text-white">
+                            <h3>RESULTADOS 2022</h3>
+                        </div>
+                        <div class="col-12 m-2 text-decoration-none text-white">
+                            <h4>Marzo</h4>
+                            <ul style="list-style:none">
+                                <li>
+                                    <a class="text-white text-decoration-none" href="">Ejemplo 1</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-decoration-none" href="">Ejemplo 2</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-decoration-none" href="">Ejemplo 3</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-3">
-                    <h3>Outros Resultados</h3>
-                                        <ul class="menu-conta">
-                                                <a href="https://mtmworld.org/wp-content/uploads/2022/01/campeoes-e-vice-2021.pdf" target="new"><li>Campeões e vice 2021 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/RELACAO-DE-CAMPEAO-E-VICE-MTM-WORLD-2020.pdf" target="new"><li>Campeões e vice 2020 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/campeoes-e-vice-2019.pdf" target="new"><li>Campeões e vice 2019 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/SPL2018.pdf" target="new"><li>Campeões e vice 2018 SPL <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/trio2018.pdf" target="new"><li>Campeões e vice 2018 Trio <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/SQ2018.pdf" target="new"><li>Campeões e vice 2018 SQ <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/pancadao2018.pdf" target="new"><li>Campeões e vice 2018 Pancadão <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2017.pdf" target="new"><li>Campeões e vice 2017 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/sq2016.pdf" target="new"><li>Campeões e vice 2016 SQ <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/spl2016.pdf" target="new"><li>Campeões e vice 2016 SPL <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/trio2016.pdf" target="new"><li>Campeões e vice 2016 Trio <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/pancadao2016.pdf" target="new"><li>Campeões e vice 2016 Pancadão <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2015.pdf" target="new"><li>Campeões e vice 2015 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2014.pdf" target="new"><li>Campeões e vice 2014 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/CAMPEOES-E-VICE-2013.pdf" target="new"><li>Campeões e vice 2013 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2012.pdf" target="new"><li>Campeões e vice 2012 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2011.pdf" target="new"><li>Campeões e vice 2011 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2010.pdf" target="new"><li>Campeões e vice 2010 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2009.pdf" target="new"><li>Campeões e vice 2009 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2008.pdf" target="new"><li>Campeões e vice 2008 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/2007.pdf" target="new"><li>Campeões e vice 2007 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/ranking_som_2006.htm_.pdf" target="new"><li>Campeões e vice 2006 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/ranking_2005_alterado.htm_.pdf" target="new"><li>Campeões e vice 2005 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/ranking_2004_antes_final.htm_.pdf" target="new"><li>Campeões e vice 2004 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/FINAL-2003.pdf" target="new"><li>Campeões e vice 2003 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/FINAL-2002-1.pdf" target="new"><li>Campeões e vice 2002 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Resultados-S-B-do-Campo-2001.pdf" target="new"><li>Campeões e vice 2001 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Final-MTM-2000.pdf" target="new"><li>Campeões e vice 2000 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Final-MTM-1999-ITAPETININGA-SP.pdf" target="new"><li>Campeões e vice 1999 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Final-MTM-1998-Manduri-SP.pdf" target="new"><li>Campeões e vice 1998 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Final-MTM-1997-Manduri-SP.pdf" target="new"><li>Campeões e vice 1997 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                                <a href="https://mtmworld.org/wp-content/uploads/2020/12/Final-MTM-1996-Manduri-SP.pdf" target="new"><li>Campeões e vice 1996 <i class="fas fa-cloud-download-alt"></i></li></a>
-                                            </ul>
-                                </div>
+                <div class="col-3 bg-dark" style="min-height: 100px;">
+                    <ul>
+                        <li>
+                            <a href="#">Ejemplo 1</a> 
+                        </li>
+                        <li>
+                            <a href="#">Ejemplo 2</a> 
+                        </li>
+                        <li>
+                            <a href="#">Ejemplo 3 </a> 
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </div>   
+    </div>
+
+
+
+
+    
     <%- include("partials/about.html") %>
     <%- include("partials/footer.html") %>
     <%- include("partials/script.html") %>

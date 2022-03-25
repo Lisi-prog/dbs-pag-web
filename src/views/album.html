@@ -11,10 +11,18 @@
 
     <div class="container">
 
+      <div class="row bg-dark text-white p-2 rounded my-3">
+        <div class="col-12">
+            <h2 class="">Fotos de eventos</h2>
+        </div>
+        
+    </div>
+
       <% if (user) { %>
         <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo Album</button>
       <% } %>
 
+      
           <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
             <% albums.forEach(function(albums){ %>
               <% foto=photos.find(element=> { return element.album.equals(albums._id);}) %>
@@ -38,8 +46,10 @@
 
     </div>
 
-    <%- include("partials/about.html") %>
-    <%- include("partials/footer.html") %>
+    <div id="">
+      <%- include("partials/about.html") %>
+      <%- include("partials/footer.html") %>
+    </div>
     <%- include("partials/script.html") %>
 </body>
 
