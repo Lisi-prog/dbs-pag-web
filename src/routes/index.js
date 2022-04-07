@@ -6,6 +6,7 @@ const router = express.Router();
 const passport = require("passport");
 const Photo = require("../models/photo");
 const Album = require("../models/album");
+const Archive = require("../models/archive");
 const cloudinary = require("cloudinary");
 const mongoose = require("mongoose");
 
@@ -35,9 +36,28 @@ router.get("/events", (req, res) => {
     res.render("events.html");
 });
 
-router.get("/downloads", (req, res) => {
-    res.render("downloads.html");
+router.get("/downloads", async (req, res) => {
+    const archives = await Archive.find();
+    res.render("downloads.html", {archives});
 });
+
+router.post("/addArchive", async (req, res) => {
+    const {title, description, url} = req.body;
+    
+    console.log(req.body);
+    const newArchive = new Archive({
+         title: title,
+         description: description,
+         url: url  
+     });
+    const archive = await newArchive.save();
+    res.send("Recibido");
+});
+
+// router.use((req, res, next) => {
+//     isAuthenticated(req, res, next);
+//     next();
+// });
 
 router.get("/winners", (req, res) => {
     res.render("winners.html");
@@ -122,11 +142,6 @@ router.get("/logout", (req, res, next) => {
     req.logOut();
     res.redirect("/");
 });
-
-// router.use((req, res, next) => {
-//     isAuthenticated(req, res, next);
-//     next();
-// });
 
 router.get("/perfil", isAuthenticated, (req, res) => {
     res.render("perfil.html", {tittle: "Mi perfil"});

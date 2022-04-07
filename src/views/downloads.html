@@ -5,20 +5,35 @@
 </head>
 <body>
     <%- include("partials/navigation.html") %>
-    <div class="container">
+    <div class="container" id="contenedor">
         <div class="row bg-dark mt-2 rounded">
             <div class="col-12">
                 <h2 class="text-center text-white p-1">Descarga lo que necesitas</h2>
             </div>
         </div>
 
-        <div class="row p-3">
+        <% if (user) { %>
+          <button type="button" class="btn btn-info ms-4 mt-4" onclick="addArchive();">+ Nuevo Archivo</button>
+        <% } %>
+
+        <div class="row p-3" id="archivos">
+          <% archives.forEach(function(archives){ %>
+            <div class="col-sm-6 p-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%-archives.title%></h5>
+                  <p class="card-text"><%-archives.description%></p>
+                  <a href="<%-archives.url%>" class="btn btn-primary">Descargar <i class="fas fa-arrow-down"></i></a>
+                </div>
+              </div>
+            </div>
+          <% }); %>
             <div class="col-sm-6 p-3">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Special title treatment</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Descargar</a>
+                  <a href="#" class="btn btn-primary">Descargar <i class="fas fa-arrow-down"></i></a>
                 </div>
               </div>
             </div>
@@ -27,7 +42,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Special title treatment</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Descargar</a>
+                  <a href="#" class="btn btn-primary">Descargar <i class="fas fa-arrow-down"></i></a>
                 </div>
               </div>
             </div>
@@ -36,7 +51,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Descargar</a>
+                    <a href="#" class="btn btn-primary">Descargar <i class="fas fa-arrow-down"></i></a>
                   </div>
                 </div>
               </div>
@@ -45,7 +60,7 @@
                   <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Descargar</a>
+                    <a href="#" class="btn btn-primary">Descargar <i class="fas fa-arrow-down"></i></a>
                   </div>
                 </div>
               </div>
