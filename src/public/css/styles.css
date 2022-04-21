@@ -148,3 +148,17 @@ footer a {
     filter: brightness(0.4);
     transition:all .5s ease-in-out;
 }
+
+.quienes-somos{
+    height: 30em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.quienes-somos-body{
+    height: 22em;
+    width: 75%;
+    background-color: #ffffff;
+    margin: auto;
+}
