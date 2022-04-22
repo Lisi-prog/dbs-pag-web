@@ -157,8 +157,10 @@ footer a {
 }
 
 .quienes-somos-body{
-    height: 22em;
+    min-height: 22em;
     width: 75%;
-    background-color: #ffffff;
     margin: auto;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 1em;
 }

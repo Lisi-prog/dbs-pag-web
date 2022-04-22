@@ -9,7 +9,7 @@
 
   <%- include("partials/navigation.html") %>
 
-    <div class="container">
+    <div class="container" id="contenedor">
 
       <div class="row bg-dark text-white p-2 rounded my-3">
         <div class="col-12">
@@ -19,28 +19,48 @@
     </div>
 
       <% if (user) { %>
-        <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo Album</button>
+        <div class="row">
+          <div class="col-6 col-sm-2">
+            <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo Album</button>
+            <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
+          </div>
+          <div class="col-6 col-sm-2">
+            <div class="form-check form-switch ms-4 mt-4">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="editON();">
+              <label class="form-check-label text-white" for="flexSwitchCheckDefault"> <b> Editar </b></label>
+            </div>
+          </div>
+        </div>
       <% } %>
 
       
-          <div class="row row-cols-1 row-cols-md-3 g-4 p-4">
+          <div class="row row-cols-1 row-cols-md-3 g-4 p-4" id="archivos">
             <% albums.forEach(function(albums){ %>
               <% foto=photos.find(element=> { return element.album.equals(albums._id);}) %>
-                <a href="/visor/<%-albums.title%>" style="text-decoration:none">
+                
+                <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
+
+                
                   <div class="col">
-                    <div class="card bg-dark text-white">
-                      <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
-                      <div class="card-body">
-                        <h5 class="card-title">
-                          <%- albums.title %>
-                        </h5>
-                        <p class="card-text">
-                          <%- albums.description %>
-                        </p>
-                      </div>
+
+                    <div class="card bg-dark text-white" id="card-photo-id" style="position: relative;">
+                      <!-- <button type="button" class="btn btn-danger btn-lg" style="position: absolute; right: 0px;"><i class="fas fa-trash"></i></button> -->
+                      <a href="/visor/<%-albums.title%>" style="text-decoration: none;" id="agh">
+                        <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
+                        <div class="card-body text-white">
+                          <h5 class="card-title">
+                            <%- albums.title %>
+                          </h5>
+                          <p class="card-text">
+                            <%- albums.description %>
+                          </p>
+                        </div>
+                      </a>
                     </div>
+
                   </div>
-                </a>
+                
+
             <% }); %>
           </div>
 
