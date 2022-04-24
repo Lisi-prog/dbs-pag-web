@@ -6,51 +6,56 @@
 <body>
     <%- include("partials/navigation.html") %>
 
-    <div class="container" style="height: 45em;">
-        <div class="row bg-dark text-white p-2 rounded my-5">
-            <div class="col-12">
+    <div class="container" id="contenedor" style="height: 45em;">
+        <div class="row bg-dark mt-2 rounded text-white">
+            <div class="col">
                 <h1 class="">Consulta los próximos eventos</h1>
             </div>
+            <% if (user) { %>
+                <div class="col-1">
+                  <button type="button" class="btn btn-success mt-2" onclick="addEvent();">Nuevo</button>
+                </div>
+                <div class="col-1 m-auto">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="viewDelete();">
+                    <label class="form-check-label text-white" for="flexSwitchCheckDefault"> <b> Editar </b></label>
+                  </div>
+                </div>
+            <% } %>
+        </div>
+
+        
+
+        <div class="row bg-dark text-white rounded my-3" id="archivos" style="position: relative;">
+
+            <% events.forEach(function(events){ %>
+                <div class="col">
+                    <span>Fecha</span><br>
+                    <%- events.date %>
+                </div>
+                <div class="col">
+                    <span>Ubicacion</span><br>
+                    <%- events.ubication %>
+                </div>
+                <div class="col">
+                    <span>Descripcion</span><br>
+                    <%- events.description %>
+                </div>
+                <div class="col">
+                    <span>Juez/Organo</span><br>
+                    <%- events.juez %>
+                </div>
+                <div class="col" id="card-photo-id">
+                    <span>Categoria</span><br>
+                    <%- events.category %>
+                    <% if (user) { %>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/events/delete/<%-events._id%>'"><i class="fas fa-trash"></i></button>
+                    <% } %>
+                </div>
+              <% }); %>
+
             
         </div>
-        <div class="row bg-dark text-white rounded my-3">
-            <div class="col">
-                <span>Fecha</span><br>
-                21/3/2022
-            </div>
-            <div class="col">
-                <span>Ubicacion</span>
-            </div>
-            <div class="col">
-                <span>Descripcion</span>
-            </div>
-            <div class="col">
-                <span>Juez/Organo</span>
-            </div>
-            <div class="col">
-                <span>Categoria</span>
-            </div>
-        </div>
-
-        <div class="row bg-dark text-white rounded my-3">
-            <div class="col">
-                <span>Fecha</span><br>
-                21/3/2022
-            </div>
-            <div class="col">
-                <span>Ubicacion</span>
-            </div>
-            <div class="col">
-                <span>Descripcion</span>
-            </div>
-            <div class="col">
-                <span>Juez/Organo</span>
-            </div>
-            <div class="col">
-                <span>Categoria</span>
-            </div>
-        </div>
-
     </div>
 
     <%- include("partials/about.html") %>

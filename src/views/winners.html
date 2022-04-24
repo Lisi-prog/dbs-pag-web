@@ -7,6 +7,21 @@
     <%- include("partials/navigation.html") %>
 
     <div class="container">
+        <% if (user) { %>
+            <div class="row">
+              <div class="col-6 col-sm-2">
+                <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo ganador</button>
+                <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
+              </div>
+              <div class="col-6 col-sm-2">
+                <div class="form-check form-switch ms-4 mt-4">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="editON();">
+                  <label class="form-check-label text-white" for="flexSwitchCheckDefault"> <b> Editar </b></label>
+                </div>
+              </div>
+            </div>
+          <% } %>
+
         <div class="winners py-4" style="min-height: 600px">
             <div class="row">
                 <div class="col-9 bg-dark" style="min-height: 100px">

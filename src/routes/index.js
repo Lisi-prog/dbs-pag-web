@@ -7,6 +7,8 @@ const passport = require("passport");
 const Photo = require("../models/photo");
 const Album = require("../models/album");
 const Archive = require("../models/archive");
+const Event = require("../models/event");
+const Notice = require("../models/notice");
 const cloudinary = require("cloudinary");
 const mongoose = require("mongoose");
 
@@ -18,24 +20,60 @@ cloudinary.config({
 });
 const fs = require("fs-extra");
 
+
+//----------------------------- Pagina principal -----------------------------------------------
 router.get("/", async (req, res) => {
     const photos = await Photo.find();
     const albums = await Album.find();
- res.render("index.html", {photos, albums});
+    res.render("index.html", {photos, albums});
 });
 
 router.get("/contact", (req, res) => {
     res.render("contact.html");
 });
 
-router.get("/news", (req, res) => {
-    res.render("news.html");
+router.get("/news", async (req, res) => {
+    const news = await Notice.find();
+    res.render("news.html", {news});
+});
+//----------------------------------------------------------------------------------------------
+
+
+router.get("/events", async (req, res) => {
+    const events = await Event.find();
+    res.render("events.html", {events});
 });
 
-router.get("/events", (req, res) => {
-    res.render("events.html");
+router.post("/addEvent", async (req, res) => {
+    const {date, ubication, description, juez, category} = req.body;
+    const newEvent = new Event ({
+        date: date,
+        ubication: ubication,
+        description: description,
+        juez: juez,
+        category: category
+    });
+    const event = await newEvent.save();
+    res.send("Recibido");
 });
 
+router.get("/events/delete/:event_id", async (req, res) => {
+    const {event_id} = req.params;
+    await Event.findByIdAndDelete(event_id);
+    res.redirect("/events");
+});
+
+// router.post("events/delete/:event_id", (req, res) => {
+//     const {event_id} = req.params;
+//     console.log(photo_id);
+//     const event = await Event.findByIdAndDelete(event_id);
+//     // const result = await cloudinary.v2.uploader.destroy(photo.public_id);
+//     console.log(result);
+//     res.redirect("events.html");
+// });
+
+
+//----------------------------- Descargas AB ---------------------------------------------------
 router.get("/downloads", async (req, res) => {
     const archives = await Archive.find();
     res.render("downloads.html", {archives});
@@ -51,8 +89,15 @@ router.post("/addArchive", async (req, res) => {
          url: url  
      });
     const archive = await newArchive.save();
-    res.send("Recibido");
+    res.redirect("/downloads");
 });
+
+router.get("/archive/delete/:archive_id", async (req, res) => {
+     const {archive_id} = req.params;
+     await Archive.findByIdAndDelete(archive_id);
+     res.redirect("/downloads");
+ });
+//----------------------------------------------------------------------------------------------
 
 // router.use((req, res, next) => {
 //     isAuthenticated(req, res, next);
@@ -131,6 +176,24 @@ router.get("/images/delete/:photo_id", async (req, res) => {
     console.log(result);
     res.redirect("/");
 });
+
+router.get("/albums/delete/:album_id", async (req, res) => {  
+    //const photo = mongoose.Types.ObjectId(req.params.photo_id);
+    const {album_id} = req.params;
+    console.log(album_id);
+    const photos = await Photo.find({"album":album_id});
+    console.log(photos);
+    for(var i=0; i<photos.length; i++){
+        await Photo.findByIdAndDelete(photos[i]._id);
+        await cloudinary.v2.uploader.destroy(photos[i].public_id);
+    }
+    await Album.findByIdAndDelete(album_id);
+    // const photo = await Photo.findByIdAndDelete(photo_id);
+    // const result = await cloudinary.v2.uploader.destroy(photo.public_id);
+    // console.log(result);
+    res.redirect("/");
+});
+
 
 router.post("/login", passport.authenticate("local-signin", {
     successRedirect: "/",

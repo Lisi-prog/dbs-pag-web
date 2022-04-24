@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const {Schema, model} = mongoose;
 
 const eventSchema = new Schema({
-    fecha: Date,
-    ubicacion: String,
-    descripcion: String,
+    date: String,
+    ubication: String,
+    description: String,
     juez: String,
-    categoria: String
+    category: String
 });
 
-module.exports = model("archive", eventSchema);
+module.exports = model("event", eventSchema);

@@ -10,31 +10,25 @@
   <%- include("partials/navigation.html") %>
 
     <div class="container" id="contenedor">
-
-      <div class="row bg-dark text-white p-2 rounded my-3">
-        <div class="col-12">
-            <h2 class="">Fotos de eventos</h2>
+      <div class="row bg-dark p-2 rounded my-3">
+        <div class="col">
+            <h2 class="text-white p-1">Fotos de eventos</h2>
         </div>
-        
-    </div>
-
-      <% if (user) { %>
-        <div class="row">
-          <div class="col-6 col-sm-2">
-            <button type="button" class="btn btn-info ms-4 mt-4" onclick="location.href='/addPhoto'">+ Nuevo Album</button>
-            <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
+        <% if (user) { %>
+          <div class="col-1">
+            <button type="button" class="btn btn-success mt-2" onclick="location.href='/addPhoto'">Nuevo</button>
           </div>
-          <div class="col-6 col-sm-2">
-            <div class="form-check form-switch ms-4 mt-4">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="editON();">
+          <div class="col-1 m-auto">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="viewDelete();">
               <label class="form-check-label text-white" for="flexSwitchCheckDefault"> <b> Editar </b></label>
             </div>
           </div>
-        </div>
-      <% } %>
+        <% } %>
+    </div>
 
       
-          <div class="row row-cols-1 row-cols-md-3 g-4 p-4" id="archivos">
+          <div class="row row-cols-1 row-cols-md-3 g-4 p-4" id="archivos" style="min-height: 40em;">
             <% albums.forEach(function(albums){ %>
               <% foto=photos.find(element=> { return element.album.equals(albums._id);}) %>
                 
@@ -44,7 +38,9 @@
                   <div class="col">
 
                     <div class="card bg-dark text-white" id="card-photo-id" style="position: relative;">
-                      <!-- <button type="button" class="btn btn-danger btn-lg" style="position: absolute; right: 0px;"><i class="fas fa-trash"></i></button> -->
+                      <% if (user) { %>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums._id%>'"><i class="fas fa-trash"></i></button>
+                      <% } %>
                       <a href="/visor/<%-albums.title%>" style="text-decoration: none;" id="agh">
                         <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
                         <div class="card-body text-white">
