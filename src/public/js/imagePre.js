@@ -13,7 +13,7 @@ function createPreview(file){
     newDiv.innerHTML = img;
     node.appendChild(newDiv);
     // img.insertBefore(node, null);
-  }
+}
 
 const myInput = document.getElementById('addPhoto01');
 
@@ -38,3 +38,32 @@ if(myInput){
     });
 }
 
+
+
+
+function createPreview2(file){
+    var imgCodified = URL.createObjectURL(file);
+    //const newDiv = document.createElement("div");
+    
+    const node = document.getElementById("container-photo");
+    //newDiv.classList.add("col-sm");
+    //newDiv.setAttribute("id","elementos");
+    
+    const img = '<img class="img-fluid m-auto" style="height:100%; with:100% position:relative" src="' + imgCodified + '" alt="Foto del usuario">';
+
+    //newDiv.innerHTML = img;
+    node.innerHTML = img;
+    //node.appendChild(newDiv);
+}
+
+
+const myInput2 = document.getElementById('addPhoto02');
+
+if(myInput2){
+    myInput2.addEventListener("change", (evt) => {
+        var file = evt.target.files[0]; // FileList object
+        // const node = document.getElementById("formulario");
+        // const child = document.getElementById("container-photo");
+        createPreview2(file);
+    });
+}

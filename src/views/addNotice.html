@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.html") %>
+</head>
+<body>
+    <%- include("partials/navigation.html") %>
+
+    <div class="container">
+
+        <div class="row bg-dark mt-2 rounded">
+            <div class="col">
+                <h2 class="text-white p-1">Nueva Noticia</h2>
+            </div>
+        </div>
+
+        <div class="card m-5">
+            <div class="card-body">
+                <form action="/news/add" method="POST" enctype="multipart/form-data" id="formulario">
+                    <div class="form-group p-3 bg-secondary" id="container-photo" style="height: 25em; width: 100%; display: flex;">
+
+                    </div>
+                    <div class="form-group p-3">
+                        <label for="formFile" class="form-label">Caratula</label>
+                        <input class="form-control" type="file" id="addPhoto02" name="image">
+                    </div>
+
+                    <div class="form-group p-3">
+                        <label for="exampleFormControlInput1" class="form-label">Titular</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Titulo de la noticia" name="headline">
+                    </div>
+
+                    <div class="form-group p-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Entrada</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="gate" placeholder="Entrada de la noticia"></textarea>
+                    </div>
+
+                    <button class="btn btn-success m-4" id="botonn">Subir Noticia</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/about.html") %>
+    <%- include("partials/footer.html") %>
+    <%- include("partials/script.html") %>
+</body>
+</html>

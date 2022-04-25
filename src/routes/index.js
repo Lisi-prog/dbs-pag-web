@@ -36,6 +36,29 @@ router.get("/news", async (req, res) => {
     const news = await Notice.find();
     res.render("news.html", {news});
 });
+
+router.get("/addNotice", async (req, res) => {
+    res.render("addNotice.html");
+});
+
+router.get("/viewNotice/:news_id", () => {
+    res.render("viewNotice.html");
+});
+
+router.post("/news/add", async (req, res) => {
+    const {headline, gate} = req.body;
+    var locaFilePath = req.files[0].path;
+    console.log(locaFilePath);
+    const result = await cloudinary.v2.uploader.upload(locaFilePath);
+    const newNotice = new Notice({
+         title: headline,
+         description: gate,
+         url: result.url,
+         fecha: Date.now()   
+    });
+    await newNotice.save();
+    await fs.unlink(locaFilePath);
+});
 //----------------------------------------------------------------------------------------------
 
 

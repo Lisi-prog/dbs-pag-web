@@ -14,7 +14,7 @@
         </div>
         <% if (user) { %>
           <div class="col-1">
-            <button type="button" class="btn btn-success mt-2" onclick="addArchive();">Nuevo</button>
+            <button type="button" class="btn btn-success mt-2" onclick="location.href='/addNotice'">Nuevo</button>
           </div>
           <div class="col-1 m-auto">
             <div class="form-check form-switch">
@@ -26,6 +26,35 @@
       </div>
 
       <% news.forEach(function(news){ %>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4 p-4">
+          <div class="col ">
+              <div class="col">
+                  <div class="card">
+                    <img
+                      src="<%- news.url %>"
+                      class="card-img-top" alt="...">
+                      <% if (user) { %>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/news/delete/<%-news._id%>'"><i class="fas fa-trash"></i></button>
+                      <% } %>
+                    <div class="card-body">
+                      <h5 class="card-title"><%- news.title %></h5>
+                      <p class="card-text"> <%- news.description %> </p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">
+                          <div class="row">
+                              <div class="col-8"> <%- news.fecha %> </div>
+                              <div class="col-4">
+                                  <a class="" href="/viewNotice/<%-news._id%>" title="">Leer más</a>
+                              </div>
+                          </div>    
+                      </small>
+                    </div>
+                  </div>
+                </div>
+          </div>     
+        </div>
 
       <% }); %>
       
@@ -49,7 +78,7 @@
                         <div class="row">
                             <div class="col-8">23 de febrero de 2022</div>
                             <div class="col-4">
-                                <a class="" href="" title="">Leer más</a>
+                                <a class="" href="/viewNotice/<%-news._id%>" title="">Leer más</a>
                             </div>
                         </div>    
                     </small>
