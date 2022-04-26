@@ -62,6 +62,12 @@ router.post("/news/add", async (req, res) => {
     await newNotice.save();
     await fs.unlink(locaFilePath);
 });
+
+router.get("/news/delete/:news_id", async (req, res) => {
+    const {news_id} = req.params;
+    await Notice.findByIdAndDelete(news_id);
+    res.redirect("/news");
+});
 //----------------------------------------------------------------------------------------------
 
 
@@ -135,12 +141,12 @@ router.get("/winners", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-    res.render("register.html", {tittle: 'Inicio de sesion'});
+    res.render("register.html");
 });
 
 router.post("/register", passport.authenticate("local-signup", {
-    successRedirect: "/perfil",
-    failureRedirect: "/login",
+    successRedirect: "/",
+    failureRedirect: "/register",
     passReqToCallback: true
 }));
 

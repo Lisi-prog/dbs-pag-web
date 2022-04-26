@@ -43,7 +43,7 @@ function addArchive(){
     //--------------------------------------------------------
 
     var divElement = document.createElement("div");
-    divElement.setAttribute("class","col-md-4 offset-md-4");
+    divElement.setAttribute("class","col-md-4 offset-md-4 mt-3");
     divElement.setAttribute("id","newArchive");
 
     var divElementHead = document.createElement("div");
