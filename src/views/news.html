@@ -58,35 +58,7 @@
 
       <% }); %>
       
-      <div class="row row-cols-1 row-cols-md-4 g-4 p-4">
-        <div class="col ">
-            <div class="col">
-                <div class="card">
-                  <img
-                    src="/images/default.jpg"
-                    class="card-img-top" alt="...">
-                    <% if (user) { %>
-                      <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/news/delete/<%-news._id%>'"><i class="fas fa-trash"></i></button>
-                    <% } %>
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                      content. This content is a little bit longer.</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">
-                        <div class="row">
-                            <div class="col-8">23 de febrero de 2022</div>
-                            <div class="col-4">
-                                <a class="" href="/viewNotice/<%-news._id%>" title="">Leer más</a>
-                            </div>
-                        </div>    
-                    </small>
-                  </div>
-                </div>
-              </div>
-        </div>     
-      </div>
+      
 
       <div class="row">
         <div class="col-12">

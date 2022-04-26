@@ -104,76 +104,35 @@
         </li>
       </ul>
 
-      <div class="row row-cols-1 row-cols-md-2 g-4 pt-4">
-        <div class="col">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/default.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Noticia ejemplo 1</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      
+        <div class="row row-cols-1 row-cols-md-2 g-4 pt-4">
+          <% news.forEach(function(news){ %>
+          <div class="col">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="<%-news.url%>" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <a class="text-black" href="/viewNotice/<%-news._id%>" style="text-decoration: none;" >
+                      <h5 class="card-title"><%-news.title%></h5>
+                    </a>
+                    
+                    <p class="card-text"><%-news.description%></p>
+                    <p class="card-text">
+                      <small class="text-muted"><%-news.fecha%></small></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <% }); %>
         </div>
-        <div class="col">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/default.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Noticia ejemplo 2</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/default.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Noticia ejemplo 3</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="/images/default.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Noticia ejemplo 4</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <a name="quienes-somos"></a>
-      <div class="quienes-somos bg-dark">
-        <div class="quienes-somos-body p-3">
+      <div class="quienes-somos">
+        <div class="quienes-somos-body p-3 bg-dark">
           <h1>
             <b>
               <i> ¿Quienes somos?</i>

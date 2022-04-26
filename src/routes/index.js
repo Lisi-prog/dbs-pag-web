@@ -25,7 +25,8 @@ const fs = require("fs-extra");
 router.get("/", async (req, res) => {
     const photos = await Photo.find();
     const albums = await Album.find();
-    res.render("index.html", {photos, albums});
+    const news = await Notice.find();
+    res.render("index.html", {photos, albums, news});
 });
 
 router.get("/contact", (req, res) => {
@@ -41,8 +42,10 @@ router.get("/addNotice", async (req, res) => {
     res.render("addNotice.html");
 });
 
-router.get("/viewNotice/:news_id", () => {
-    res.render("viewNotice.html");
+router.get("/viewNotice/:news_id", async (req, res) => {
+    const {news_id} = req.params
+    const news = await Notice.findById(news_id);
+    res.render("viewNotice.html", {news});
 });
 
 router.post("/news/add", async (req, res) => {
@@ -132,7 +135,7 @@ router.get("/winners", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-    res.render("login.html", {tittle: 'Inicio de sesion'});
+    res.render("register.html", {tittle: 'Inicio de sesion'});
 });
 
 router.post("/register", passport.authenticate("local-signup", {
