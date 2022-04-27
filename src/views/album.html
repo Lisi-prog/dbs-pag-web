@@ -41,7 +41,7 @@
                       <% if (user) { %>
                         <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums._id%>'"><i class="fas fa-trash"></i></button>
                       <% } %>
-                      <a href="/visor/<%-albums.title%>" style="text-decoration: none;" id="agh">
+                      <a href="/visor/<%-albums._id%>" style="text-decoration: none;" id="agh">
                         <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
                         <div class="card-body text-white">
                           <h5 class="card-title">

@@ -84,7 +84,7 @@
             <% foto=photos.find(element=> { console.log(element.album); return element.album.equals(albums._id);}) %>
             <div class="col">
               <div class="card bg-dark">
-                <a style="text-decoration:none" href="/visor/<%-albums.title%>" >
+                <a style="text-decoration:none" href="/visor/<%-albums._id%>" >
                   <img style="height: 17em;"src="<%-foto.imageURL%>" class="card-img-top img-fluid" alt="...">
                   <div class="card-body text-white">
                     <h5 class="card-title">

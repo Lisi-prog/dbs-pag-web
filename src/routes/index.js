@@ -24,7 +24,10 @@ const fs = require("fs-extra");
 //----------------------------- Pagina principal -----------------------------------------------
 router.get("/", async (req, res) => {
     const photos = await Photo.find();
-    const albums = await Album.find();
+    const albums = await Album.find().sort({ _id: -1 }).limit(3);
+    //const albums = await Album.find();
+    
+    console.log(albums);
     const news = await Notice.find();
     res.render("index.html", {photos, albums, news});
 });
@@ -160,13 +163,18 @@ router.get("/album", async (req, res) => {
     res.render("album.html", {photos, albums});
 });
 
-router.get("/visor/:title", async (req, res) => {
-    const {title} = req.params;
-    console.log(title);
-    const albums = await Album.find({title: title}); 
-    const photos = await Photo.find({album: albums});
-    console.log(photos);
-    res.render("visorAlbum.html", {albums, photos, title});
+router.get("/visor/:album_id", async (req, res) => {
+    const {album_id} = req.params;
+    const albums = await Album.findById(album_id);
+    const title = albums.title;
+    const photos = await Photo.find({album: album_id});
+    res.render("visorAlbum.html", {photos, title})
+    // const {title} = req.params;
+    // console.log(title);
+    // const albums = await Album.find({title: title}); 
+    // const photos = await Photo.find({album: albums});
+    // console.log(photos);
+    //res.render("visorAlbum.html", {albums, photos, title});
     //res.render("visorAlbum.html");
 });
 
