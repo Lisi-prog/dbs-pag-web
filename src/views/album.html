@@ -10,7 +10,7 @@
   <%- include("partials/navigation.html") %>
 
     <div class="container" id="contenedor">
-      <div class="row bg-dark p-2 rounded my-3">
+      <div class="row bg-dark p-2 rounded my-3" id="prueba">
         <div class="col">
             <h2 class="text-white p-1">Fotos de eventos</h2>
         </div>
@@ -39,7 +39,7 @@
 
                     <div class="card bg-dark text-white" id="card-photo-id" style="position: relative;">
                       <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums._id%>'"><i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums._id%>';loader()"><i class="fas fa-trash"></i></button>
                       <% } %>
                       <a href="/visor/<%-albums._id%>" style="text-decoration: none;" id="agh">
                         <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
@@ -59,13 +59,24 @@
 
             <% }); %>
           </div>
+          <!-- <div class="modal-container" id="modal-container">
+              <div class="lds-ring">
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+                <div>
+                </div>
+              </div>
+          </div> -->
 
     </div>
 
-    <div id="">
-      <%- include("partials/about.html") %>
-      <%- include("partials/footer.html") %>
-    </div>
+    
+    <%- include("partials/about.html") %>
+    <%- include("partials/footer.html") %>
     <%- include("partials/script.html") %>
 </body>
 

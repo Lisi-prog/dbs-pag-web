@@ -30,3 +30,25 @@ function viewDelete(){
         }
     }
 }
+
+function loader(){
+    var contentLoader = document.createElement("div");
+    contentLoader.setAttribute("class","modal-container");
+    var loader = document.createElement("div");
+    loader.setAttribute("class", "lds-ring");
+    var div1 = document.createElement("div");
+    var div2 = document.createElement("div");
+    var div3 = document.createElement("div");
+    var div4 = document.createElement("div");
+    loader.appendChild(div1);
+    loader.appendChild(div2);
+    loader.appendChild(div3);
+    loader.appendChild(div4);
+
+    contentLoader.appendChild(loader);
+    var node = document.getElementById("contenedor");
+    node.appendChild(contentLoader);
+    window.onload = function(){
+      node.removeChild(document.getElementsByClassName("modal-container"));
+    }
+}

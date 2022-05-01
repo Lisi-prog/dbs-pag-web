@@ -27,8 +27,9 @@ router.get("/", async (req, res) => {
     const albums = await Album.find().sort({ _id: -1 }).limit(3);
     //const albums = await Album.find();
     
-    console.log(albums);
-    const news = await Notice.find();
+    
+    const news = await Notice.find().sort({ _id: -1 }).limit(4);
+    //const news = await Notice.find();
     res.render("index.html", {photos, albums, news});
 });
 
@@ -64,6 +65,7 @@ router.post("/news/add", async (req, res) => {
     });
     await newNotice.save();
     await fs.unlink(locaFilePath);
+    res.redirect("/news");
 });
 
 router.get("/news/delete/:news_id", async (req, res) => {
@@ -89,7 +91,7 @@ router.post("/addEvent", async (req, res) => {
         category: category
     });
     const event = await newEvent.save();
-    res.send("Recibido");
+    res.redirect("/Events");
 });
 
 router.get("/events/delete/:event_id", async (req, res) => {
@@ -166,9 +168,9 @@ router.get("/album", async (req, res) => {
 router.get("/visor/:album_id", async (req, res) => {
     const {album_id} = req.params;
     const albums = await Album.findById(album_id);
-    const title = albums.title;
+    //const title = albums.title;
     const photos = await Photo.find({album: album_id});
-    res.render("visorAlbum.html", {photos, title})
+    res.render("visorAlbum.html", {photos, albums})
     // const {title} = req.params;
     // console.log(title);
     // const albums = await Album.find({title: title}); 
@@ -185,15 +187,12 @@ router.get("/addPhoto", async (req, res) => {
 
 router.post("/images/add", async (req, res) => {
     const {title, description} = req.body;
-    console.log(req.files);
-    console.log(req.body);
     const newAlbum = new Album({
         title: title,
         description: description,   
     });
     const album = await newAlbum.save();
     for (var i = 0; i < req.files.length; i++) {
-        console.log(title, description);
         var locaFilePath = req.files[i].path;
         const result = await cloudinary.v2.uploader.upload(locaFilePath);
         const newPhoto = new Photo({
@@ -204,17 +203,14 @@ router.post("/images/add", async (req, res) => {
         await newPhoto.save();
         await fs.unlink(locaFilePath);
     }
-    res.send("Recibido");
+    res.redirect("/album");
 });
 
-router.get("/images/delete/:photo_id", async (req, res) => {  
-    //const photo = mongoose.Types.ObjectId(req.params.photo_id);
-    const {photo_id} = req.params;
-    console.log(photo_id);
+router.get("/images/delete/:photo_id/:album_id", async (req, res) => {
+    const {photo_id, album_id} = req.params;
     const photo = await Photo.findByIdAndDelete(photo_id);
     const result = await cloudinary.v2.uploader.destroy(photo.public_id);
-    console.log(result);
-    res.redirect("/");
+    res.redirect("/visor/"+album_id);
 });
 
 router.get("/albums/delete/:album_id", async (req, res) => {  

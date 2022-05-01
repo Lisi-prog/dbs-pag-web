@@ -6,7 +6,7 @@
 <body>
     <%- include("partials/navigation.html") %>
 
-    <div class="container">
+    <div class="container" id="contenedor">
 
       <div class="row bg-dark mt-2 rounded">
         <div class="col">
@@ -25,9 +25,10 @@
         <% } %>
       </div>
 
-      <% news.forEach(function(news){ %>
+      
 
-        <div class="row row-cols-1 row-cols-md-4 g-4 p-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4 p-4" style="min-height: 40em;">
+        <% news.forEach(function(news){ %>
           <div class="col ">
               <div class="col">
                   <div class="card">
@@ -35,7 +36,7 @@
                       src="<%- news.url %>"
                       class="card-img-top" alt="...">
                       <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/news/delete/<%-news._id%>'"><i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/news/delete/<%-news._id%>';loader()"><i class="fas fa-trash"></i></button>
                       <% } %>
                     <div class="card-body">
                       <h5 class="card-title"><%- news.title %></h5>
@@ -53,14 +54,15 @@
                     </div>
                   </div>
                 </div>
-          </div>     
+          </div>
+        <% }); %>
         </div>
 
-      <% }); %>
+      
       
       
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-12">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
@@ -72,7 +74,7 @@
                 </ul>
             </nav>
         </div>
-    </div>
+    </div> -->
 
     </div>
 

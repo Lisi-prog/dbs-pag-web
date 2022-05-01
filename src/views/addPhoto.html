@@ -8,7 +8,7 @@
 <body>
     <%- include("partials/navigation.html") %>
 
-    <div class="container">
+    <div class="container" id="contenedor">
         <div class="card m-5">
             <div class="card-body">
                 <form action="/images/add" method="POST" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
                             </span>
                         </div>
                     </div>
-                    <button class="btn btn-primary m-4" id="botonn">Subir album</button>
+                    <button class="btn btn-primary m-4" id="botonn" type="submit" onclick="loader();">Subir album</button>
                 </form>
             </div>
         </div>

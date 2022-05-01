@@ -6,7 +6,7 @@
 <body>
     <%- include("partials/navigation.html") %>
 
-    <div class="container">
+    <div class="container" id="contenedor">
 
         <div class="row bg-dark mt-2 rounded">
             <div class="col">
@@ -35,7 +35,7 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" name="gate" placeholder="Entrada de la noticia"></textarea>
                     </div>
 
-                    <button class="btn btn-success m-4" id="botonn">Subir Noticia</button>
+                    <button class="btn btn-success m-4" id="botonn" onclick="loader();">Subir Noticia</button>
                 </form>
             </div>
         </div>

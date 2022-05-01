@@ -25,10 +25,9 @@
         </div>
 
         
-
+        <% events.forEach(function(events){ %>
         <div class="row bg-dark text-white rounded my-3" id="archivos" style="position: relative;">
 
-            <% events.forEach(function(events){ %>
                 <div class="col">
                     <span>Fecha</span><br>
                     <%- events.date %>
@@ -49,13 +48,11 @@
                     <span>Categoria</span><br>
                     <%- events.category %>
                     <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/events/delete/<%-events._id%>'"><i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/events/delete/<%-events._id%>';loader();"><i class="fas fa-trash"></i></button>
                     <% } %>
-                </div>
-              <% }); %>
-
-            
+                </div>     
         </div>
+        <% }); %>
     </div>
 
     <%- include("partials/about.html") %>

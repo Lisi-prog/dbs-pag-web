@@ -7,10 +7,10 @@
 <body>
 <%- include("partials/navigation.html") %>
 
-<div class="container ">
+<div class="container" id="contenedor">
    <div class="row bg-dark text-white p-2 rounded my-3">
       <div class="col">
-         <h2 class=""><%-title%></h2>
+         <h2 class=""><%- albums.title %></h2>
       </div>
 
       <% if (user) { %>
@@ -28,7 +28,7 @@
             
          <div class="col-sm-3 pb-3" style="position: relative;">
             <% if (user) { %>
-               <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/images/delete/<%-photos._id%>'"><i class="fas fa-trash"></i></button>
+               <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/images/delete/<%-photos._id%>/<%-albums._id%>';loader()"><i class="fas fa-trash"></i></button>
             <% } %>
             <a href="<%-photos.imageURL%>" class=" popup-btn"> 
                <img class="img-fluid img-thumbnail" src="<%-photos.imageURL%>">
@@ -39,52 +39,7 @@
    </div>
 
 </div>
-<!-- <div class="container">
 
-   <div class="row bg-dark p-2 rounded my-3">
-      <div class="col">
-         <h2 class="text-white p-1"><%-title%></h2>
-      </div>
-
-      <% if (user) { %>
-         <div class="col-1 m-auto">
-            <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onclick="viewDelete();">
-            <label class="form-check-label text-white" for="flexSwitchCheckDefault"> <b> Editar </b></label>
-            </div>
-         </div>
-      <% } %>
-   </div>
-   
-   <div class="my-3 bg-dark">
-      <div class="portfolio-item row p-4 ">
-         <% photos.forEach(function(photos){ %>
-            
-               <div class="col-lg-3  col" style="position: relative;">
-                  <% if (user) { %>
-                     <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/image/delete/<%-photos._id%>'"><i class="fas fa-trash"></i></button>
-                  <% } %>
-                  <a href="<%-photos.imageURL%>" class=" popup-btn"> 
-                     <img class="img-fluid" src="<%-photos.imageURL%>">
-                  </a>
-               </div>
-            
-            <!-- <div class="item selfie col-lg-3 col-md-4 col-6 col-sm" style="position: relative;">
-               <a href="<%-photos.imageURL%>" class="fancylight popup-btn" data-fancybox-group="light"> 
-               <img class="img-fluid" src="<%-photos.imageURL%>" alt="">
-               <% if (user) { %>
-                  <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/image/delete/<%-photos._id%>'"><i class="fas fa-trash"></i></button>
-               <% } %>
-               </a>
-               
-            </div>
-
-         <% }); %>
-      </div>
-
-   </div>
-
-</div> -->
 
 <%- include("partials/about.html") %>
 <%- include("partials/footer.html") %>

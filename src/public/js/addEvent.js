@@ -40,6 +40,7 @@ function addEvent(){
     var btnAgree = document.createElement("button");
     btnAgree.setAttribute("type", "submit");
     btnAgree.setAttribute("class", "btn btn-success m-2");
+    btnAgree.setAttribute("onclick", "loader();")
     btnAgree.innerHTML = "Subir";
 
     var btnCancel = document.createElement("button");
