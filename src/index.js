@@ -2,7 +2,7 @@ if(process.env.NODE_ENV !== "production"){
     require("dotenv").config();
 }
 const express = require("express");
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 const morgan = require("morgan");
@@ -11,10 +11,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const multer = require("multer");
 
-//Conection to server
-mongoose.connect(process.env.mongodb_uri)
-    .then(db => console.log("DB connected"))
-    .catch(err => console.log(err));
 
 //Initializations
 require("./passport/local-auth");

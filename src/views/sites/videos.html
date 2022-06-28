@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include("partials/head.html") %>
+    <%- include("../partials/head.html") %>
 </head>
 <body>
-    <%- include("partials/navigation.html") %>
+    <%- include("../partials/navigation.html") %>
     <div class="container" id="contenedor">
         <div class="row bg-dark mt-2 rounded">
             <div class="col">
-                <h2 class="text-white p-1">Descarga lo que necesitas</h2>
+                <h2 class="text-white p-1">Videos </h2>
             </div>
             <% if (user) { %>
               <div class="col-1">
@@ -29,20 +29,21 @@
               <div class="card" id="card-photo-id">
                 <div class="card-body">
                   <h5 class="card-title"><%-archives.title%></h5>
-                  <p class="card-text"><%-archives.descrip%></p>
+                  <p class="card-text"><%-archives.description%></p>
                   <a href="<%-archives.url%>" class="btn btn-primary" target="_blank">Descargar <i class="fas fa-arrow-down"></i></a>
                 </div>
                 <% if (user) { %>
-                <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/archive/delete/<%-archives.id%>';loader()"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/archive/delete/<%-archives._id%>';loader()"><i class="fas fa-trash"></i></button>
                 <% } %>
               </div>
             </div>
           <% }); %>
+          <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/2PGNzyC5lGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         </div>
 </div>
     
-    <%- include("partials/about.html") %>
-    <%- include("partials/footer.html") %>
-    <%- include("partials/script.html") %>
+    <%- include("../partials/about.html") %>
+    <%- include("../partials/footer.html") %>
+    <%- include("../partials/script.html") %>
 </body>
 </html>

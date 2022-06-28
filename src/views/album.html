@@ -29,8 +29,9 @@
 
       
           <div class="row row-cols-1 row-cols-md-3 g-4 p-4" id="archivos" style="min-height: 40em;">
+            <% if(albums != null) {%>
             <% albums.forEach(function(albums){ %>
-              <% foto=photos.find(element=> { return element.album.equals(albums._id);}) %>
+              <% foto = photos.find(element=> { return element.idAlbum === albums.id;}) %>
                 
                 <!-- <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button> -->
 
@@ -39,9 +40,9 @@
 
                     <div class="card bg-dark text-white" id="card-photo-id" style="position: relative;">
                       <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums._id%>';loader()"><i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums.id%>';loader()"><i class="fas fa-trash"></i></button>
                       <% } %>
-                      <a href="/visor/<%-albums._id%>" style="text-decoration: none;" id="agh">
+                      <a href="/visor/<%-albums.id%>" style="text-decoration: none;" id="agh">
                         <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
                         <div class="card-body text-white">
                           <h5 class="card-title">
@@ -58,20 +59,8 @@
                 
 
             <% }); %>
+            <% }%>
           </div>
-          <!-- <div class="modal-container" id="modal-container">
-              <div class="lds-ring">
-                <div>
-                </div>
-                <div>
-                </div>
-                <div>
-                </div>
-                <div>
-                </div>
-              </div>
-          </div> -->
-
     </div>
 
     

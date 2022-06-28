@@ -52,4 +52,3 @@ function loader(){
       node.removeChild(document.getElementsByClassName("modal-container"));
     }
 }
-

@@ -16,6 +16,16 @@
                 </li>
                 <% if (user) { %>
                     <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle fs-5" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Editar
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <li><a style="border-bottom: #ffffff" class="dropdown-item" href="/Perfil">Portada</a></li>
+                          <li><a style="border-bottom: #ffffff" class="dropdown-item" href="/Register">Slider</a></li>
+                          <li><a style="border-bottom: #ffffff" class="dropdown-item" href="/logout">Empresa</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fs-5" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Usuario
                         </a>
@@ -24,7 +34,7 @@
                           <li><a style="border-bottom: #ffffff" class="dropdown-item" href="/Register">Nuevo Usuario</a></li>
                           <li><a style="border-bottom: #ffffff" class="dropdown-item" href="/logout">Cerrar Sesion</a></li>
                         </ul>
-                      </li>
+                    </li>
                 <% } else { %>
                 <li class="nav-item">
                     <a class="nav-link fs-5" href="/login">Ingresar</a>
@@ -47,6 +57,11 @@
             </ul>
             
             <form class="d-flex">
+                <a class="nav-link" href="https://www.instagram.com/masdbscompetencias/" target="_blank">
+                    <span style="font-size: 1.5em; color: white;">
+                        <i class="fab fa-instagram"></i>
+                    </span>
+                </a>
                 <a class="nav-link" href="https://www.facebook.com/RichardSomArgentina/" target="_blank">
                     <span style="font-size: 1.5em; color: white;">
                         <i class="fab fa-facebook"></i>

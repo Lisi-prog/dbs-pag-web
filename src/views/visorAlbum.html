@@ -10,9 +10,8 @@
 <div class="container" id="contenedor">
    <div class="row bg-dark text-white p-2 rounded my-3">
       <div class="col">
-         <h2 class=""><%- albums.title %></h2>
+         <h2 class=""><%- albums[0].title %></h2>
       </div>
-
       <% if (user) { %>
          <div class="col-1 m-auto">
             <div class="form-check form-switch">
@@ -28,7 +27,7 @@
             
          <div class="col-sm-3 pb-3" style="position: relative;">
             <% if (user) { %>
-               <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/images/delete/<%-photos._id%>/<%-albums._id%>';loader()"><i class="fas fa-trash"></i></button>
+               <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/images/delete/<%-photos.id%>/<%-albums[0].id%>';loader()"><i class="fas fa-trash"></i></button>
             <% } %>
             <a href="<%-photos.imageURL%>" class=" popup-btn"> 
                <img class="img-fluid img-thumbnail" src="<%-photos.imageURL%>">

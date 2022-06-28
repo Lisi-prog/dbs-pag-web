@@ -14,7 +14,7 @@
 
     <ul class="nav justify-content-center bg-dark p-3" id="navegacion">
       <li class="nav-item">
-        <a class="nav-link text-white fs-5" href="#quienes-somos">Empresa</a>
+        <a class="nav-link text-white fs-5" href="/company">Empresa</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white fs-5" href="/news">Noticias</a>
@@ -22,17 +22,21 @@
       <li class="nav-item">
         <a class="nav-link text-white fs-5" href="/events">Eventos</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link text-white fs-5" href="/winners">Ganadores</a>
-      </li> -->
+      <li class="nav-item">
+        <a class="nav-link text-white fs-5" href="/winners">Ranking</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white fs-5" href="/winners">Resultados</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link text-white fs-5" href="/album">Fotos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white fs-5" href="/downloads">Descargas</a>
+        <a class="nav-link text-white fs-5" href="/videos">Videos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white fs-5" aria-current="page" href="/contact">Contacto</a>
+        <a class="nav-link text-white fs-5" href="/downloads">Descargas</a>
+      </li>
     </ul>
     <div class="contenedor">
 
@@ -77,14 +81,14 @@
         </li>
       </ul>
 
-      <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
-        
+      <div class="row row-cols-2">
+        <% if(albums != null) { %>
           <% albums.forEach(function(albums){ %>
 
-            <% foto=photos.find(element=> { console.log(element.album); return element.album.equals(albums._id);}) %>
+            <% foto=photos.find(element=> { return element.idAlbum === albums.id;}) %>
             <div class="col">
               <div class="card bg-dark" style="min-height: 15em;">
-                <a style="text-decoration:none" href="/visor/<%-albums._id%>" >
+                <a style="text-decoration:none" href="/visor/<%-albums.id%>" >
                   <img style="height: 17em;"src="<%-foto.imageURL%>" class="card-img-top img-fluid" alt="...">
                   <div class="card-body text-white">
                     <h5 class="card-title">
@@ -95,7 +99,7 @@
               </div>
             </div>
           <% }); %>
-        
+        <% } %>
       </div>
 
       <ul class="nav nav-dark fs-4">
@@ -106,6 +110,7 @@
 
       
         <div class="row row-cols-1 row-cols-md-2 g-4 pt-4">
+        <% if(news != null) { %>
           <% news.forEach(function(news){ %>
           <div class="col">
             <div class="card mb-3" style="max-width: 540px;">
@@ -128,6 +133,7 @@
             </div>
           </div>
           <% }); %>
+          <% } %>
         </div>
       
       <a name="quienes-somos"></a>
@@ -136,6 +142,9 @@
           <h1>
             <b>
               <i> ¿Quienes somos?</i>
+              <% if (user) { %>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fas fa-edit"></i></button>
+                <% } %>
             </b>
           </h1>
           <h4><i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos officia, facere minima quibusdam ullam beatae nesciunt, repellat nostrum quaerat harum eos vel vitae magni nemo modi exercitationem libero, sint obcaecati blanditiis dolor praesentium. Vitae doloremque fugiat quia architecto praesentium, sint nisi deserunt reprehenderit facere quas culpa magnam possimus laboriosam? Velit autem sed, accusantium quaerat ipsum itaque expedita numquam labore quis laboriosam tempora incidunt fuga reiciendis ducimus cupiditate voluptas voluptate fugiat similique aspernatur, unde dolor id necessitatibus eligendi? Numquam, alias deleniti. </i></h4>
@@ -144,6 +153,33 @@
 
     </div>
     
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Titulo:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Parrafo:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     
 
     

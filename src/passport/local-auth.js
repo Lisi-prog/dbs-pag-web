@@ -1,15 +1,15 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
-const User = require("../models/user");
+const helpers = require("../passport/helpers");
+const pool = require("../database");
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser( async (id, done) => {
-    const user = await User.findById(id);
-    done(null, user);
+    const rows = await pool.query('SELECT * FROM user WHERE id = ?', [id]);
+    done(null, rows);
 });
 
 passport.use("local-signup", new LocalStrategy({
@@ -17,16 +17,17 @@ passport.use("local-signup", new LocalStrategy({
     passwordField: "password",
     passReqToCallback: true
 }, async (req, email, password, done) => {
-    console.log(email);
-    const user = await User.findOne({email: email});
-    console.log(user);
-    if(user){
+    const user = await pool.query("SELECT * FROM user WHERE email = ?;", [email]);
+    if(user.length != 0){
         return done(null, false, req.flash("signupMessage","Ya tiene una cuenta"));
     }else{
-        const newUser = new User();;
+        const newUser = {
+            email,
+            password,
+        };
         newUser.email = email;
-        newUser.password = newUser.encryptPassword(password);
-        await newUser.save();
+        newUser.password = await helpers.encryptPassword(password);
+        await pool.query("INSERT INTO user(email, pass) VALUES (?, ?);", [newUser.email, newUser.password]);
         done(null, newUser);
     }
 }));
@@ -36,11 +37,11 @@ passport.use("local-signin", new LocalStrategy({
     passwordField: "password",
     passReqToCallback: true
 }, async (req, email, password, done) => {
-    const user = await User.findOne({email: email});
-    if(!user){
+    const user = await pool.query("SELECT * FROM user WHERE email = ?;", [email]);
+    if(user.length === 0){
         done(null, false, req.flash("signinMessage", "Usuario no encontrado."));
     }
-    if(!user.comparePassword(password)){
+    if(await helpers.comparePassword(password, user.pass)){
         done(null, false, req.flash("signinMessage", "Contraseña incorrecta"));
     }
     done(null, user);
