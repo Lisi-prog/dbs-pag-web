@@ -84,12 +84,12 @@
       <div class="row row-cols-2">
         <% if(albums != null) { %>
           <% albums.forEach(function(albums){ %>
-            <% if(photos.isEmpty) { %>
+            <% if(!photos.isEmpty) { %>
               <% foto = photos.find(element=> { return element.idAlbum === albums.id;}) %>
               <div class="col">
                 <div class="card bg-dark" style="min-height: 15em;">
                   <a style="text-decoration:none" href="/visor/<%-albums.id%>" >
-                    <img style="height: 17em;"src="<%-foto.imageURL%>" class="card-img-top img-fluid" alt="...">
+                    <img style="height: 17em;"src="<%-foto.ruta%>" class="card-img-top img-fluid" alt="...">
                     <div class="card-body text-white">
                       <h5 class="card-title">
                         <%- albums.title %>

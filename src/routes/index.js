@@ -52,7 +52,8 @@ router.post('/upload', async (req, res, next) => {
 });
 //----------------------------- Pagina principal -----------------------------------------------
 router.get("/", async (req, res) => {
-    const albums = await pool.query("SELECT * FROM album;");
+    //const albums = await pool.query("SELECT * FROM album;");
+    const albums = await pool.query("SELECT * FROM album ORDER BY id DESC LIMIT 4;");
     const photos = await pool.query("SELECT * FROM photo;");
     const news = null;
     res.render("index.html", {photos, albums, news});
