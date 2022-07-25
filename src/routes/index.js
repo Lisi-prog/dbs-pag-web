@@ -11,8 +11,13 @@ const { now } = require("mongoose");
 const {Storage} = require("@google-cloud/storage");
 const {format} = require("util");
 
-const storage = new Storage();
-const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
+const storage = new Storage({
+    keyFilename: path.join(__dirname, "../elegant-pipe-356603-81fb7a82f326.json"),
+    projectId: "elegant-pipe-356603"
+});
+storage.getBuckets().then(x => console.log(x));
+//const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
+const bucket = storage.bucket('masdbs-bucket');
 
 
 
@@ -229,7 +234,8 @@ router.post("/images/add", async (req, res) => {
             });
     
             blobStream.on('error', err => {
-                next(err);
+                //next(err);
+                console.log(err);
             });
             const publicUrl = format(
                 `https://storage.googleapis.com/${bucket.name}/${blob.name}`

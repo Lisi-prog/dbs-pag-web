@@ -69,7 +69,7 @@ CREATE TABLE slider(
 CREATE TABLE videos(
 	id int auto_increment,
     title varchar(100),
-    iframe varchar(500),
+    url varchar(500),
     primary key(id)
 );
 
