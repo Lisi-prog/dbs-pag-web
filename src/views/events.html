@@ -29,26 +29,29 @@
         <div class="row bg-dark text-white rounded my-3" id="archivos" style="position: relative;">
 
                 <div class="col">
-                    <span>Fecha</span><br>
+                    <span class="text-white text-opacity-50">Fecha</span><br>
                     <%- events.fecha.getDate() + "/" + 0 + (events.fecha.getMonth()+1) + "/" + events.fecha.getFullYear() %>
                 </div>
                 <div class="col">
-                    <span>Ubicacion</span><br>
+                    <span class="text-white text-opacity-50">Ubicacion</span><br>
                     <%- events.ubicacion %>
                 </div>
                 <div class="col">
-                    <span>Descripcion</span><br>
+                    <span class="text-white text-opacity-50">Descripcion</span><br>
                     <%- events.descrip %>
                 </div>
                 <div class="col">
-                    <span>Juez/Organo</span><br>
+                    <span class="text-white text-opacity-50">Juez/Organo</span><br>
                     <%- events.juez %>
                 </div>
                 <div class="col" id="card-photo-id">
-                    <span>Categoria</span><br>
+                    <span class="text-white text-opacity-50">Categoria</span><br>
                     <%- events.category %>
                     <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/events/delete/<%-events._id%>';loader();"><i class="fas fa-trash"></i></button>
+                        <div class="botones" style="display: none; position: absolute; right: 0px; top: 0px;">
+                            <button type="button" class="btn btn-warning btn-lg"  id="editOn" onclick="location.href='/albums/delete/<%-events.id%>';loader()"><i class="fas fa-pen"></i></button>
+                            <button type="button" class="btn btn-danger btn-lg"  id="editOn" onclick="location.href='/events/delete/<%-events.id%>';loader();"><i class="fas fa-trash"></i></button>
+                        </div>
                     <% } %>
                 </div>     
         </div>

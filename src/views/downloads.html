@@ -26,14 +26,17 @@
         <div class="row p-3" id="archivos" style="min-height: 25em; position: relative;">
           <% archives.forEach(function(archives){ %>
             <div class="col-sm-6 p-3">
-              <div class="card" id="card-photo-id">
+              <div class="card bg-dark text-white" id="card-photo-id">
                 <div class="card-body">
                   <h5 class="card-title"><%-archives.title%></h5>
                   <p class="card-text"><%-archives.descrip%></p>
-                  <a href="<%-archives.url%>" class="btn btn-primary" target="_blank">Descargar <i class="fas fa-arrow-down"></i></a>
+                  <a href="<%-archives.url%>" class="btn btn-light" target="_blank">Descargar <i class="fas fa-arrow-down"></i></a>
                 </div>
                 <% if (user) { %>
-                <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/archive/delete/<%-archives.id%>';loader()"><i class="fas fa-trash"></i></button>
+                  <div class="botones" style="display: none; position: absolute; right: 0px; top: 0px;">
+                    <button type="button" class="btn btn-warning btn-lg"  id="editOn" onclick="location.href='/albums/delete/<%-archives.id%>';loader()"><i class="fas fa-pen"></i></button>
+                    <button type="button" class="btn btn-danger btn-lg"  id="editOn" onclick="location.href='/archive/delete/<%-archives.id%>';loader()"><i class="fas fa-trash"></i></button>
+                  </div>
                 <% } %>
               </div>
             </div>

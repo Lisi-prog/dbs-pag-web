@@ -21,7 +21,7 @@ function editON(){
 }
 
 function viewDelete(){
-    var elms = document.getElementsByClassName("btn-danger");
+    var elms = document.getElementsByClassName("botones");
     for(var i = 0; i < elms.length; i++){
         if(elms[i].style.display=='inline'){
             elms[i].style.display='none';

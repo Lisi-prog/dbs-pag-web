@@ -5,14 +5,14 @@
 </head>
 <body>
     <%- include("../partials/navigation.html") %>
-    <div class="container" id="contenedor">
+  <div class="container" id="contenedor">
         <div class="row bg-dark mt-2 rounded">
             <div class="col">
                 <h2 class="text-white p-1">Videos </h2>
             </div>
             <% if (user) { %>
               <div class="col-1">
-                <button type="button" class="btn btn-success mt-2" onclick="addArchive();">Nuevo</button>
+                <button type="button" class="btn btn-success mt-2" onclick="addVideo();">Nuevo</button>
               </div>
               <div class="col-1 m-auto">
                 <div class="form-check form-switch">
@@ -24,23 +24,29 @@
         </div>
 
         <div class="row p-3" id="archivos" style="min-height: 25em; position: relative;">
-          <% archives.forEach(function(archives){ %>
-            <div class="col-sm-6 p-3">
-              <div class="card" id="card-photo-id">
-                <div class="card-body">
-                  <h5 class="card-title"><%-archives.title%></h5>
-                  <p class="card-text"><%-archives.description%></p>
-                  <a href="<%-archives.url%>" class="btn btn-primary" target="_blank">Descargar <i class="fas fa-arrow-down"></i></a>
-                </div>
-                <% if (user) { %>
-                <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/archive/delete/<%-archives._id%>';loader()"><i class="fas fa-trash"></i></button>
-                <% } %>
+        <% if(!videos.isEmpty){ %>
+          <% videos.forEach(function(videos){ %>
+          <div class="col-sm-6">
+            <% if (user) { %>
+              <div class="botones" style="display: none; position: absolute;">
+                <button type="button" class="btn btn-warning btn-lg"  id="editOn" onclick="location.href='/videos/delete/<%-videos.id%>';loader()"><i class="fas fa-pen"></i></button>
+                <button type="button" class="btn btn-danger btn-lg"  id="editOn" onclick="location.href='/videos/delete/<%-videos.id%>';loader()"><i class="fas fa-trash"></i></button>
+              </div>
+            <% } %>
+            <div class="bg-dark rounded" style="width: 100%; height: 100%">
+              <div class="tittle text-white text-center">
+                <h3><%- videos.title %></h3>
+              </div>
+              <div class="iframe text-center" style="height: 35vh;">
+                <iframe width="100%" height="100%" src="<%- videos.url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
+          </div>
           <% }); %>
-          <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/2PGNzyC5lGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+        <% } %>
         </div>
-</div>
+
+  </div>
     
     <%- include("../partials/about.html") %>
     <%- include("../partials/footer.html") %>

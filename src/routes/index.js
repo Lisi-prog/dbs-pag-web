@@ -5,18 +5,51 @@ const res = require("express/lib/response");
 const { redirect } = require("express/lib/response");
 const router = express.Router();
 const passport = require("passport");
-const cloudinary = require("cloudinary");
-
-
-
-cloudinary.config({
-    cloud_name: process.env.cloud_name,
-    api_key: process.env.api_key,
-    api_secret: process.env.api_secret
-});
+const path = require("path");
 const fs = require("fs-extra");
+const { now } = require("mongoose");
+const {Storage} = require("@google-cloud/storage");
+const {format} = require("util");
+
+const storage = new Storage();
+const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
 
+
+router.post('/upload', async (req, res, next) => {
+    if (!req.files) {
+      res.status(400).send('No file uploaded.');
+      return;
+    }
+    try {
+        for (var i = 0; i < req.files.length; i++) {
+            console.log(req.files[0]);
+            // Create a new blob in the bucket and upload the file data.
+            const blob = bucket.file(req.files[i].originalname);
+
+            const blobStream = blob.createWriteStream({
+                resumable: false,
+            });
+        
+            blobStream.on('error', err => {
+                next(err);
+            });
+        
+            blobStream.on('finish', () => {
+            // The public URL can be used to directly access the file via HTTP.
+            const publicUrl = format(
+                 `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            );
+                res.status(200).send(publicUrl);
+                //res.redirect("/");
+            });
+
+            blobStream.end(req.files[i].buffer);
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }    
+});
 //----------------------------- Pagina principal -----------------------------------------------
 router.get("/", async (req, res) => {
     const albums = await pool.query("SELECT * FROM album;");
@@ -82,7 +115,7 @@ router.post("/addEvent", async (req, res) => {
 
 router.get("/events/delete/:event_id", async (req, res) => {
     const {event_id} = req.params;
-    await Event.findByIdAndDelete(event_id);
+    await pool.query("DELETE FROM events WHERE id = ?", [event_id]);
     res.redirect("/events");
 });
 
@@ -129,8 +162,20 @@ router.get("/company", (req, res) => {
 });
 
 router.get("/videos", async (req, res) => {
-    const archives = await pool.query("SELECT * FROM archive;");
-    res.render("sites/videos.html", {archives});
+    const videos = await pool.query("SELECT * FROM videos;");
+    res.render("sites/videos.html", {videos});
+});
+
+router.post("/addVideo", async (req, res) => {
+    const {title, url} = req.body;
+    await pool.query("INSERT INTO videos(title, url) VALUES(?,?);", [title, url]);
+    res.redirect("/videos");
+});
+
+router.get("/videos/delete/:video_id", async (req, res) => {
+    const {video_id} = req.params;
+    await pool.query("DELETE FROM videos WHERE id = ?", [video_id]);
+    res.redirect("/videos");
 });
 
 router.get("/register", (req, res) => {
@@ -167,21 +212,50 @@ router.get("/addPhoto", async (req, res) => {
 router.post("/images/add", async (req, res) => {
     const {title, description} = req.body;
     const newAlbum = {
-        title: title,
-        description: description,   
+         title: title,
+         description: description,   
     };
     const album = await pool.query("INSERT INTO album(title, descrip) VALUES(?,?);", [newAlbum.title, newAlbum.description]);
     
     for (var i = 0; i < req.files.length; i++) {
-        var locaFilePath = req.files[i].path;
-        const result = await cloudinary.v2.uploader.upload(locaFilePath);
-        const newPhoto = {
-            imageURL: result.url, 
-            public_id: result.public_id,
-            album: album.insertId
+        try {
+            // Create a new blob in the bucket and upload the file data.
+            let filename = new Date().getTime() + req.files[i].originalname;
+            const blob = bucket.file(filename);
+
+            const blobStream = blob.createWriteStream({
+                resumable: false,
+            });
+    
+            blobStream.on('error', err => {
+                next(err);
+            });
+            const publicUrl = format(
+                `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+            );
+            const newPhoto = {
+                filename: filename, 
+                ruta: publicUrl,
+                originalname: req.files[i].originalname,
+                mymetype: req.files[i].mimetype,
+                size: req.files[i].size,
+                created_at: now(),
+                album: album.insertId
+            }
+            await pool.query("INSERT INTO photo(filename, ruta, originalname, mymetype, size, created_at, idAlbum ) VALUES(?,?,?,?,?,?,?);", [newPhoto.filename, newPhoto.ruta, newPhoto.originalname, newPhoto.mymetype, newPhoto.size, newPhoto.created_at, newPhoto.album]);
+
+        // blobStream.on('finish', () => {
+        // // The public URL can be used to directly access the file via HTTP.
+        //     const publicUrl = format(
+        //             `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+        //     );
+        //     //await pool.query("INSERT INTO photo(filename, ruta, originalname, mymetype, size, created_at, idAlbum ) VALUES(?,?,?,?,?,?,?);", [newPhoto.filename, newPhoto.ruta, newPhoto.originalname, newPhoto.mymetype, newPhoto.size, newPhoto.created_at, newPhoto.album]);
+        // });
+
+            blobStream.end(req.files[i].buffer);
+        } catch (error) {
+            window.alert("Ocurrio un problema")
         }
-        await pool.query("INSERT INTO photo(imageURL, public_id, idAlbum) VALUES(?,?,?);", [newPhoto.imageURL, newPhoto.public_id, newPhoto.album]);
-        await fs.unlink(locaFilePath);
     }
     res.redirect("/album");
 });
@@ -189,17 +263,18 @@ router.post("/images/add", async (req, res) => {
 router.get("/images/delete/:photo_id/:album_id", async (req, res) => {
     const {photo_id, album_id} = req.params;
     const photo = await pool.query("SELECT * FROM photo WHERE id = ? AND idAlbum = ?", [photo_id, album_id]);
-    const result = await cloudinary.v2.uploader.destroy(photo[0].public_id);
+    await bucket.file(photo[0].filename).delete();
     await pool.query("DELETE FROM photo WHERE id = ? ;", [photo_id]);
-    res.redirect("/visor/"+album_id);
+    res.redirect("/visor/"+ album_id);
 });
 
 router.get("/albums/delete/:album_id", async (req, res) => {  
     const {album_id} = req.params;
     const photos = await pool.query("SELECT * FROM photo WHERE idAlbum = ?", [album_id]);
-    for(var i=0; i<photos.length; i++){
+    for(var i=0; i < photos.length; i++){
         await pool.query("DELETE FROM photo WHERE id = ?", [photos[i].id]);
-        await cloudinary.v2.uploader.destroy(photos[i].public_id);
+        await bucket.file(photos[i].filename).delete();
+        //await fs.unlink(path.resolve("./src/public/") + photos[i].ruta);
     }
     await pool.query("DELETE FROM album WHERE id = ?", [album_id]);
     res.redirect("/album");

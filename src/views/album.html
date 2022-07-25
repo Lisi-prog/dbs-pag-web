@@ -40,10 +40,15 @@
 
                     <div class="card bg-dark text-white" id="card-photo-id" style="position: relative;">
                       <% if (user) { %>
-                        <button type="button" class="btn btn-danger btn-lg" style="display: none; position: absolute; right: 0px; top: 0px;" id="editOn" onclick="location.href='/albums/delete/<%-albums.id%>';loader()"><i class="fas fa-trash"></i></button>
+                        <div class="botones" style="display: none; position: absolute; right: 0px; top: 0px;">
+                          <button type="button" class="btn btn-warning btn-lg"  id="editOn" onclick="location.href='/albums/delete/<%-albums.id%>';loader()"><i class="fas fa-pen"></i></button>
+                          <button type="button" class="btn btn-danger btn-lg"  id="editOn" onclick="location.href='/albums/delete/<%-albums.id%>';loader()"><i class="fas fa-trash"></i></button>
+                        </div>
                       <% } %>
                       <a href="/visor/<%-albums.id%>" style="text-decoration: none;" id="agh">
-                        <img src="<%-foto.imageURL%>" class="card-img-top" style="height: 250px">
+                        
+                        <img src="<%-foto.ruta%>" class="card-img-top" style="height: 250px">
+                        
                         <div class="card-body text-white">
                           <h5 class="card-title">
                             <%- albums.title %>

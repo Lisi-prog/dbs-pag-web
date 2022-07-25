@@ -1,22 +1,15 @@
-function addArchive(){
+function addVideo(){
 
     //Formulario
     var formElement = document.createElement("form");
     formElement.setAttribute("method","POST");
-    formElement.setAttribute("action","/addArchive");
-    //formElement.setAttribute("enctype","multipart/form-data");
+    formElement.setAttribute("action","/addVideo");
 
     var titleField = document.createElement("input");
     titleField.setAttribute("type", "text");
     titleField.setAttribute("name", "title");
     titleField.setAttribute("class", "form-control");
     titleField.setAttribute("placeholder", "Titulo");
-
-    var descripField = document.createElement("textarea");
-    descripField.setAttribute("type", "text");
-    descripField.setAttribute("name", "description");
-    descripField.setAttribute("class", "form-control");
-    descripField.setAttribute("placeholder", "Descripcion");
 
     var urlField = document.createElement("input");
     urlField.setAttribute("type", "text");
@@ -37,7 +30,6 @@ function addArchive(){
     btnCancel.innerHTML = "Cancelar";
 
     formElement.appendChild(titleField);
-    formElement.appendChild(descripField);
     formElement.appendChild(urlField);
     formElement.appendChild(btnAgree);
     formElement.appendChild(btnCancel);
@@ -45,13 +37,13 @@ function addArchive(){
 
     var divElement = document.createElement("div");
     divElement.setAttribute("class","col-md-4 offset-md-4 mt-3");
-    divElement.setAttribute("id","newArchive");
+    divElement.setAttribute("id","newVideo");
 
     var divElementHead = document.createElement("div");
     divElementHead.setAttribute("class","card-header bg-dark text-white text-center");
 
     var h3Div = document.createElement("h3");
-    h3Div.innerHTML = "Nuevo Archivo";
+    h3Div.innerHTML = "Nuevo Video";
 
     divElementHead.appendChild(h3Div);
 
@@ -72,7 +64,6 @@ function addArchive(){
     divElementFormGroup4.setAttribute("class","form-group p-2");
 
     divElementFormGroup1.appendChild(titleField);
-    divElementFormGroup2.appendChild(descripField);
     divElementFormGroup3.appendChild(urlField);
     divElementFormGroup4.appendChild(btnAgree);
     divElementFormGroup4.appendChild(btnCancel);
@@ -91,7 +82,7 @@ function addArchive(){
     //divElement.appendChild(formElement);
 
     var node = document.getElementById("contenedor");
-    var bandera = document.getElementById("newArchive");
+    var bandera = document.getElementById("newVideo");
     if(!bandera){
         node.insertBefore(divElement, document.getElementById("archivos"));
     }else{

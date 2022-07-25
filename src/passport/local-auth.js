@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser( async (id, done) => {
-    const rows = await pool.query('SELECT * FROM user WHERE id = ?', [id]);
+    const rows = await pool.query('SELECT * FROM usuario WHERE id = ?', [id]);
     done(null, rows);
 });
 
@@ -17,7 +17,7 @@ passport.use("local-signup", new LocalStrategy({
     passwordField: "password",
     passReqToCallback: true
 }, async (req, email, password, done) => {
-    const user = await pool.query("SELECT * FROM user WHERE email = ?;", [email]);
+    const user = await pool.query("SELECT * FROM usuario WHERE email = ?;", [email]);
     if(user.length != 0){
         return done(null, false, req.flash("signupMessage","Ya tiene una cuenta"));
     }else{
@@ -27,7 +27,7 @@ passport.use("local-signup", new LocalStrategy({
         };
         newUser.email = email;
         newUser.password = await helpers.encryptPassword(password);
-        await pool.query("INSERT INTO user(email, pass) VALUES (?, ?);", [newUser.email, newUser.password]);
+        await pool.query("INSERT INTO usuario(email, pass) VALUES (?, ?);", [newUser.email, newUser.password]);
         done(null, newUser);
     }
 }));
@@ -37,7 +37,7 @@ passport.use("local-signin", new LocalStrategy({
     passwordField: "password",
     passReqToCallback: true
 }, async (req, email, password, done) => {
-    const user = await pool.query("SELECT * FROM user WHERE email = ?;", [email]);
+    const user = await pool.query("SELECT * FROM usuario WHERE email = ?;", [email]);
     if(user.length === 0){
         done(null, false, req.flash("signinMessage", "Usuario no encontrado."));
     }

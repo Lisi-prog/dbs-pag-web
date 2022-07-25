@@ -1,11 +1,11 @@
-CREATE TABLE User (
+CREATE TABLE usuario (
     id int AUTO_INCREMENT,
     email varchar (100) NOT NULL,
     pass varchar(100) NOT NULL,
     PRIMARY KEY(id)
 );
 
-CREATE TABLE Archive(
+CREATE TABLE archive(
     id int AUTO_INCREMENT,
     title varchar(50),
     descrip varchar(100),
@@ -13,7 +13,7 @@ CREATE TABLE Archive(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE Notice (
+CREATE TABLE notice (
 	id int AUTO_INCREMENT,
     title varchar(100),
     descrip varchar(1000),
@@ -22,7 +22,7 @@ CREATE TABLE Notice (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE Events (
+CREATE TABLE events (
 	id int AUTO_INCREMENT,
     feca date,
     ubicacion varchar(50),
@@ -32,39 +32,44 @@ CREATE TABLE Events (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE Album (
+CREATE TABLE album (
 	id int AUTO_INCREMENT,
     title varchar(50),
     descrip varchar(100),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE Photo (
+CREATE TABLE photo (
 	id int AUTO_INCREMENT,
-    imageURL varchar(100),
-    public_id varchar(100),
+    filename varchar(100),
+    ruta varchar(300),
+    originalname varchar(100),
+    mymetype varchar(100),
+    size integer,
+    created_at date,
     idAlbum int,
     PRIMARY KEY(id),
     FOREIGN KEY(idAlbum) REFERENCES album(id)
 );
 
-CREATE TABLE Portada(
+CREATE TABLE portada(
 	id int auto_increment,
     imageURL varchar(100),
     public_id varchar(100),
     primary key(id)
 );
 
-CREATE TABLE Slider(
+CREATE TABLE slider(
 	id int auto_increment,
     imageURL varchar(100),
     public_id varchar(100),
     primary key(id)
 );
 
-CREATE TABLE Videos(
+CREATE TABLE videos(
 	id int auto_increment,
-    imageURL varchar(500),
+    title varchar(100),
+    iframe varchar(500),
     primary key(id)
 );
 
